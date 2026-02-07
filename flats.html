@@ -12,7 +12,6 @@
 
     <link href="//solelyjane.com/cdn/shop/t/18/assets/theme.css?v=64620864768860856411747849695" rel="stylesheet" type="text/css" media="all" />
     <link href="//solelyjane.com/cdn/shop/t/18/assets/swatches.css?v=157844926215047500451747849695" rel="stylesheet" type="text/css" media="all" />
-    <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
 
     <style data-shopify>
@@ -118,7 +117,7 @@
 
         .heels-hero__content .body-medium:last-child {
             margin-bottom: 0;
-        }j
+        }
 
         .shop-now-btn {
             display: inline-flex;
@@ -172,41 +171,52 @@
             object-fit: contain;
             object-position: center;
             opacity: 0;
-            animation: heelsFade 12s infinite;
+            transition: opacity .6s ease;
             background: #ffffff;
         }
 
-        .heels-hero__slide:nth-child(1) {
-            animation-delay: 0s;
+        .heels-hero__slide.is-active {
+            opacity: 1;
         }
 
-        .heels-hero__slide:nth-child(2) {
-            animation-delay: 4s;
+        .heels-hero__controls {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 14px;
+            pointer-events: none;
         }
 
-        .heels-hero__slide:nth-child(3) {
-            animation-delay: 8s;
+        .heels-hero__control {
+            pointer-events: auto;
+            width: 38px;
+            height: 38px;
+            border-radius: 999px;
+            border: 1px solid rgba(0, 0, 0, 0.12);
+            background: rgba(255, 255, 255, 0.92);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
         }
 
-        @keyframes heelsFade {
-            0% {
-                opacity: 0;
+        .heels-hero__control svg {
+            width: 18px;
+            height: 18px;
+            stroke: #1f1f1f;
+        }
+
+        @media (max-width: 600px) {
+            .heels-hero__controls {
+                padding: 0 10px;
             }
 
-            8% {
-                opacity: 1;
-            }
-
-            33% {
-                opacity: 1;
-            }
-
-            41% {
-                opacity: 0;
-            }
-
-            100% {
-                opacity: 0;
+            .heels-hero__control {
+                width: 34px;
+                height: 34px;
             }
         }
 
@@ -223,12 +233,15 @@
 
         @media (prefers-reduced-motion: reduce) {
             .heels-hero__slide {
-                animation: none;
-                opacity: 1;
+                transition: none;
             }
 
-            .heels-hero__slide:not(:first-child) {
-                display: none;
+            .heels-hero__slide:not(.is-active) {
+                opacity: 0;
+            }
+
+            .heels-hero__slide:first-child {
+                opacity: 1;
             }
         }
 
@@ -567,6 +580,18 @@
                         <img class="heels-hero__slide" src="/cdn/shop/files/flat1.jpeg" alt="Solely Jane flats 1">
                         <img class="heels-hero__slide" src="/cdn/shop/files/flat2.jpeg" alt="Solely Jane flats 2">
                         <img class="heels-hero__slide" src="/cdn/shop/files/flat3.jpeg" alt="Solely Jane flats 3">
+                        <div class="heels-hero__controls" aria-hidden="true">
+                            <button class="heels-hero__control heels-hero__control--prev" type="button" aria-label="Previous slide">
+                                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                                    <path d="M15 5l-7 7 7 7" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+                                </svg>
+                            </button>
+                            <button class="heels-hero__control heels-hero__control--next" type="button" aria-label="Next slide">
+                                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                                    <path d="M9 5l7 7-7 7" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" />
+                                </svg>
+                            </button>
+                        </div>
                     </div>
                     <div class="heels-hero__content">
                         <h2 id="headermaincontent" class="heading-large">SOLELY JANE FLATS</h2> 
@@ -586,6 +611,65 @@
             </section>
         </main>
     </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var media = document.querySelector(".heels-hero__media");
+            if (!media) {
+                return;
+            }
+
+            var slides = Array.prototype.slice.call(media.querySelectorAll(".heels-hero__slide"));
+            if (!slides.length) {
+                return;
+            }
+
+            var index = 0;
+            var intervalMs = 4000;
+            var timerId = null;
+
+            var setActive = function(nextIndex) {
+                slides[index].classList.remove("is-active");
+                index = (nextIndex + slides.length) % slides.length;
+                slides[index].classList.add("is-active");
+            };
+
+            slides.forEach(function(slide, idx) {
+                slide.classList.toggle("is-active", idx === 0);
+            });
+
+            var startTimer = function() {
+                timerId = window.setInterval(function() {
+                    setActive(index + 1);
+                }, intervalMs);
+            };
+
+            var resetTimer = function() {
+                if (timerId) {
+                    window.clearInterval(timerId);
+                }
+                startTimer();
+            };
+
+            var prevBtn = media.querySelector(".heels-hero__control--prev");
+            var nextBtn = media.querySelector(".heels-hero__control--next");
+
+            if (prevBtn) {
+                prevBtn.addEventListener("click", function() {
+                    setActive(index - 1);
+                    resetTimer();
+                });
+            }
+
+            if (nextBtn) {
+                nextBtn.addEventListener("click", function() {
+                    setActive(index + 1);
+                    resetTimer();
+                });
+            }
+
+            startTimer();
+        });
+    </script>
 </body>
 
 </html>

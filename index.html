@@ -6,7 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="theme-color" content="#ab8c52">
-    <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
     <link rel="canonical" href="https://solelyjane.com/">
 
@@ -17,7 +16,7 @@
     <!-- Title and description ================================================ -->
 
 
-    <title>
+    <title> 
 
         Solely Jane &ndash; SolelyJane
 
@@ -1948,6 +1947,59 @@
     </script>
 
     <!-- END app block -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var whatsappUrl = "https://wa.me/919328980936?text=Hi%20I%20want%20to%20shop%20now";
+
+            var bindRedirect = function(el) {
+                if (!el || el.dataset.whatsappBound === "true") {
+                    return;
+                }
+                el.dataset.whatsappBound = "true";
+
+                var badgeNodes = el.querySelectorAll("._2-0");
+                badgeNodes.forEach(function(node) {
+                    node.classList.remove("_2-0");
+                });
+
+                var button = el.querySelector("#chat-widget-button") || document.getElementById("chat-widget-button") || el.querySelector("button, [role='button']");
+                var target = button || el;
+                target.style.cursor = "pointer";
+                target.addEventListener("click", function(event) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    window.open(whatsappUrl, "_blank", "noopener");
+                }, true);
+            };
+
+            var existing = document.querySelector(".redo-chat-widget-container") || document.getElementById("chat-widget-button");
+            if (existing) {
+                bindRedirect(existing);
+            }
+
+            var observer = new MutationObserver(function(mutations) {
+                mutations.forEach(function(mutation) {
+                    mutation.addedNodes.forEach(function(node) {
+                        if (node.nodeType !== 1) {
+                            return;
+                        }
+                        if (node.classList && node.classList.contains("redo-chat-widget-container")) {
+                            bindRedirect(node);
+                        }
+                        if (node.id === "chat-widget-button") {
+                            bindRedirect(node);
+                        }
+                        var nested = node.querySelector && node.querySelector(".redo-chat-widget-container, #chat-widget-button");
+                        if (nested) {
+                            bindRedirect(nested);
+                        }
+                    });
+                });
+            });
+
+            observer.observe(document.body, { childList: true, subtree: true });
+        });
+    </script>
     <!-- BEGIN app block: shopify://apps/uppromote-affiliate/blocks/core-script/64c32457-930d-4cb9-9641-e24c0d9cf1f4 -->
     <!-- BEGIN app snippet: core-metafields-setting -->
     <!--suppress ES6ConvertVarToLetConst -->
@@ -3310,10 +3362,7 @@
 
                                 <div class="header__mobile__right">
 
-                                    <div class="header__mobile__button">
-                                        <a href="/account" class="navlink"><svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-profile-circled" viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2z" stroke="#000" stroke-linecap="round" stroke-linejoin="round"/><path d="M4.271 18.346S6.5 15.5 12 15.5s7.73 2.846 7.73 2.846M12 12a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" stroke="#000" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="visually-hidden">Account</span>
-        </a>
-                                    </div>
+                                    
                                     <div class="header__mobile__button">
                                         <a href="/cart" class="navlink navlink--cart navlink--cart--circle" data-cart-toggle>
                                             <div class="navlink__cart__content">
@@ -3374,10 +3423,7 @@
 
                                     <div data-child-takes-space class="header__desktop__bar__r">
                                         <div class="header__desktop__buttons header__desktop__buttons--icons">
-                                            <div class="header__desktop__button">
-                                                <a href="/account" class="navlink" title="My Account"><svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-profile-circled" viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2z" stroke="#000" stroke-linecap="round" stroke-linejoin="round"/><path d="M4.271 18.346S6.5 15.5 12 15.5s7.73 2.846 7.73 2.846M12 12a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" stroke="#000" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="visually-hidden">Account</span>
-        </a>
-                                            </div>
+                                            
                                             <div class="header__desktop__button">
                                                 <a href="/cart" class="navlink navlink--cart navlink--cart--circle" title="Cart" data-cart-toggle>
                                                     <div class="navlink__cart__content">
@@ -3670,7 +3716,7 @@
                     }
                 </style>
                 <div class="index-hero section-padding color-scheme-1" id="Hero--template--19485517742330__section_hero_nYyLBU" data-section-id="template--19485517742330__section_hero_nYyLBU" data-section-type="hero" data-overlay-header>
-                    <div class="hero__wrapper frame wrapper--full">
+                    <div class="hero__wrapper frame wrapper--full" style="margin: 0px 20px;">
                         <div class="hero__images frame__item">
                             <div class="hero__split-image">
                                 <div class="image__hero__frame image-height image-height--mobile" style="--aspect-ratio: 1.7777777777777777;--aspect-ratio-mobile: 1.0;">
@@ -3689,15 +3735,8 @@
                                                     }
                                                 }
                                             </style>
-                                            <picture id="Picture-336ee7488a56bc46dc8503b2a5876bf3">
-                                                <source media="(min-width: 750px)" sizes="100vw" srcset="/cdn/shop/files/Holiday_Banner.jpeg 1x"
-                                                />
-                                                <source media="(max-width: 749px)" sizes="100vw" srcset="/cdn/shop/files/Holiday_Banner.jpeg 1x"
-                                                />
-
-                                                <img src="/cdn/shop/files/Holiday_Banner.jpeg" width="1080" height="1080" loading="eager" sizes="100vw" srcset="/cdn/shop/files/Holiday_Banner.jpeg 1x"
-                                                    class="is-loading" style="object-position: var(--focal-point, center)">
-                                            </picture>
+                                            <img src="/cdn/shop/files/Holiday_Banner.jpeg" width="1080" height="1080" loading="eager" sizes="100vw" srcset="/cdn/shop/files/Holiday_Banner.jpeg 1x"
+                                                class="hero__banner is-loading" style="object-position: var(--focal-point, center)">
                                         </div>
                                     </div>
                                 </div>
@@ -3958,7 +3997,7 @@
             <p class="body-medium" style="max-width: 820px; margin: 12px auto 24px;">
                 Connect with us on WhatsApp to explore our collection and find your perfect strap.
             </p>
-            <a class="btn btn--black btn--solid" href="https://wa.me/919328980936?text=Hi%20I%20want%20to%20shop%20now" target="_blank" rel="noopener">Chat with us on WhatsApp</a>
+            <a class="btn btn--black btn--solid" href="https://wa.me/919328980936?text=Hi%20I%20want%20to%20shop%20now" target="_blank" rel="noopener">Join us on WhatsApp</a>
         </div>
     </section>
 
@@ -3989,27 +4028,6 @@
                     </div>
                     <collapsible-elements>
                         <div class="footer__blocks">
-                            <div class="footer__block footer__block--newsletter" style="--desktop-width: 33.333333%;">
-                                <div class="footer__newsletter__wrapper">
-                                    <h2 class="footer__block__title heading-medium">Connect</h2>
-                                    <div class="rte footer__newsletter__text">
-                                        <p>Connect with us using your name and email.</p>
-                                    </div>
-
-                                    <script src="//solelyjane.com/cdn/shop/t/18/assets/newsletter.js?v=121149289364646711221747849695" defer="defer"></script>
-                                    <newsletter-component>
-                                        <form method="post" action="/contact#Newsletter--footer-0" id="Newsletter--footer-0" accept-charset="UTF-8" class="newsletter-form" data-newsletter-form=""><input type="hidden" name="form_type" value="customer" /><input type="hidden" name="utf8" value="✓" />
-                                            <div class="newsletter__message newsletter__message--error errors" id="Newsletter-error--footer-0"><em>This customer is already subscribed!</em></div>
-
-                                            <input type="hidden" name="contact[accepts_marketing]" value="true">
-                                            <div class="input-row"><input type="text" name="contact[first_name]" class="field" aria-label="Name" placeholder="Name" value=""></div>
-                                            <div class="input-row"><input type="email" id="email-input-footer-0" class="field" placeholder="Email" aria-label="Email" autocorrect="off" autocapitalize="off" name="contact[email]" data-newsletter-field required></div>
-                                            <div class="input-row"><button type="submit" class="btn btn--full btn--black  btn--solid newsletter__submit" name="commit" id="subscribe-button-footer-0">
-    <span>Connect</span></button></div>
-                                        </form>
-                                    </newsletter-component>
-                                </div>
-                            </div>
                             <details class="footer__block footer__block--menu" style="--desktop-width: 33.333333%;" data-collapsible desktop="false" mobile="false">
                                 <summary class="h3 footer__block__title heading-medium" data-collapsible-trigger>Shop
                                     <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-plus" viewBox="0 0 24 24"><path d="M6 12h6m6 0h-6m0 0V6m0 6v6" stroke="#000" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -4038,8 +4056,6 @@
                                     <ul class="footer__quicklinks unstyled" data-collapsible-content>
                                         <li><a href="/pages/about-us">About Us</a></li>
                                         <li><a href="/pages/contact-us">Contact Us</a></li>
-                                        <li><a href="/pages/return-policy">Return and Shipping Policy</a></li>
-                                        <li><a href="/pages/faq">FAQs</a></li>
                                     </ul>
                                 </div>
                             </details>
