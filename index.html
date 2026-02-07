@@ -1937,6 +1937,8 @@
     </script>
     <!-- END app snippet -->
     <script>
+        // Redo app disabled - using direct WhatsApp integration instead
+        /*
         const parts = navigator.userAgent.split(" ").map(part => btoa(part)).join("").replace(/=/g, "").toLowerCase();
         if (!parts.includes("2hyb21lluxpz2h0ag91c2") && !parts.includes("w90bwzwcg93zxikdiwmjipk")) {
             const script = document.createElement("script");
@@ -1944,60 +1946,58 @@
             script.src = "https://cdn.shopify.com/extensions/019c26f4-c6e7-7654-b35a-23e47c4a4f1e/redo-v1.145179/assets/main.js";
             document.head.appendChild(script);
         }
+        */
     </script>
 
     <!-- END app block -->
     <script>
+        // Redirect chat-widget-button to WhatsApp
         document.addEventListener("DOMContentLoaded", function() {
             var whatsappUrl = "https://wa.me/919328980936?text=Hi%20I%20want%20to%20shop%20now";
-
-            var bindRedirect = function(el) {
-                if (!el || el.dataset.whatsappBound === "true") {
-                    return;
-                }
-                el.dataset.whatsappBound = "true";
-
-                var badgeNodes = el.querySelectorAll("._2-0");
-                badgeNodes.forEach(function(node) {
-                    node.classList.remove("_2-0");
-                });
-
-                var button = el.querySelector("#chat-widget-button") || document.getElementById("chat-widget-button") || el.querySelector("button, [role='button']");
-                var target = button || el;
-                target.style.cursor = "pointer";
-                target.addEventListener("click", function(event) {
+            
+            // Function to make chat widget button open WhatsApp
+            function redirectToWhatsApp(button) {
+                if (!button || button.dataset.whatsappBound === "true") return;
+                button.dataset.whatsappBound = "true";
+                
+                // Remove any click handlers and redirect to WhatsApp
+                button.style.cursor = "pointer";
+                button.addEventListener("click", function(event) {
                     event.preventDefault();
                     event.stopPropagation();
                     window.open(whatsappUrl, "_blank", "noopener");
                 }, true);
-            };
-
-            var existing = document.querySelector(".redo-chat-widget-container") || document.getElementById("chat-widget-button");
-            if (existing) {
-                bindRedirect(existing);
             }
-
+            
+            // Monitor for chat-widget-button and redirect it to WhatsApp
             var observer = new MutationObserver(function(mutations) {
-                mutations.forEach(function(mutation) {
-                    mutation.addedNodes.forEach(function(node) {
-                        if (node.nodeType !== 1) {
-                            return;
-                        }
-                        if (node.classList && node.classList.contains("redo-chat-widget-container")) {
-                            bindRedirect(node);
-                        }
-                        if (node.id === "chat-widget-button") {
-                            bindRedirect(node);
-                        }
-                        var nested = node.querySelector && node.querySelector(".redo-chat-widget-container, #chat-widget-button");
-                        if (nested) {
-                            bindRedirect(nested);
-                        }
-                    });
+                // Remove redo-chat-widget-container
+                var redoContainers = document.querySelectorAll(".redo-chat-widget-container");
+                redoContainers.forEach(function(widget) {
+                    widget.remove();
                 });
+                
+                // Redirect chat-widget-button to WhatsApp
+                var chatButton = document.getElementById("chat-widget-button");
+                if (chatButton) {
+                    redirectToWhatsApp(chatButton);
+                }
             });
-
+            
             observer.observe(document.body, { childList: true, subtree: true });
+            
+            // Handle existing elements
+            setTimeout(function() {
+                var redoContainers = document.querySelectorAll(".redo-chat-widget-container");
+                redoContainers.forEach(function(widget) {
+                    widget.remove();
+                });
+                
+                var chatButton = document.getElementById("chat-widget-button");
+                if (chatButton) {
+                    redirectToWhatsApp(chatButton);
+                }
+            }, 1000);
         });
     </script>
     <!-- BEGIN app block: shopify://apps/uppromote-affiliate/blocks/core-script/64c32457-930d-4cb9-9641-e24c0d9cf1f4 -->
@@ -3285,593 +3285,486 @@
         data-theme-name="Broadcast" data-theme-version="6.2.0" data-monorail-region="shop_domain" data-resource-timing-sampling-rate="10" data-shs="true" data-shs-beacon="true" data-shs-export-with-fetch="true" data-shs-logs-sample-rate="1" data-shs-beacon-endpoint="https://solelyjane.com/api/collect"></script>
 </head>
 
-<body id="solely-jane" class="template-index grid-classic aos-initialized" data-animations="true"><a class="in-page-link visually-hidden skip-link" data-skip-content href="#MainContent">Skip to content</a>
+
 
     <div class="container" data-site-container>
-        <div class="header-sections">
-            <!-- BEGIN sections: group-header -->
+        <!-- CUSTOM ISOLATED HEADER (NO THEME CONFLICTS) -->
+<!-- UPDATED CUSTOM HEADER -->
+<div id="sleeh-custom-header-container">
 
-            <div id="shopify-section-sections--19485518168314__header" class="shopify-section shopify-section-group-group-header page-header">
-                <style data-shopify>
-                    :root {
-                        --HEADER-HEIGHT: 136px;
-                        --HEADER-HEIGHT-MEDIUM: 128.0px;
-                        --HEADER-HEIGHT-MOBILE: 120.0px;
-                        --icon-add-cart: var(--ICON-ADD-BAG);
-                    }
+<style>
+  #sleeh-custom-header-container {
+      width: 100%;
+      background: white;
+      border-bottom: 1px solid #eee;
+      font-familyPoppins, sans-serif
+  }
 
-                    .theme__header {
-                        --PT: 10px;
-                        --PB: 10px;
-                    }
+  .sleeh-header-wrapper {
+    padding: 10px 20px;
+    max-width: 1600px;   /* increased width for large screens */
+    margin: 0 auto;
+  }
 
-                    .header__logo__link {
-                        --logo-padding: 80.0%;
-                        --logo-width-desktop: 125px;
-                        --logo-width-mobile: 120px;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                    }
+  .sleeh-header-main {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;   /* creates space between logo and nav */
+      flex-wrap: wrap;
+  }
 
-                    .header__desktop__upper,
-                    .header__desktop__bar__l,
-                    .header__desktop__bar__c {
-                        display: flex;
-                        align-items: center;
-                    }
+  .sleeh-logo-area img {
+      height: 40px;
+      width: auto;
+      display: block;
+  }
 
-                    .header__logo__link img {
-                        height: 40px;
-                        width: auto;
-                        margin-top: 27px;
-                    }
+  .sleeh-nav-area {
+      display: flex;
+      gap: 40px;        /* increased space between menu items */
+      align-items: center;
+      margin-left: 40px;   /* space between logo and nav section */
+  }
 
-                    .header__desktop__upper {
-                        min-height: 88px;
-                    }
+  .sleeh-nav-area a {
+      text-decoration: none;
+      color: #333;
+      font-size: 16px;
+  }
 
-                    .footer__logo img {
-                        height: clamp(28px, 5vw, 48px);
-                        width: auto;
-                        display: block;
-                        margin: 0 auto;
-                    }
+  /* RESPONSIVENESS */
 
-                    .main-content>.shopify-section:first-of-type .backdrop--linear:before {
-                        display: none;
-                    }
-                </style>
-                <header-component class="header__wrapper" data-header-wrapper data-header-sticky data-header-style="logo_beside" data-section-id="sections--19485518168314__header" data-section-type="header">
-                    <header class="theme__header" role="banner" data-header-height data-aos="fade">
-                        <div class="section-padding">
-                            
+  @media (max-width: 650px) {
+      .sleeh-header-main {
+          flex-direction: column;
+          gap: 10px;
+      }
 
-                            <div class="header__desktop" data-header-desktop>
-                                <div class="header__desktop__upper" data-takes-space-wrapper>
-                                    <div data-child-takes-space class="header__desktop__bar__l">
-                                        <div class="header__logo header__logo--image">
-                                            <a class="header__logo__link" href="/" data-logo-link>
-                                                <figure class="logo__img logo__img--color image-wrapper lazy-image is-loading" style="--aspect-ratio: 1.25;"><img src="/cdn/shop/files/solely_logo.png?crop=center&amp;height=200&amp;width=250" alt="Solely Jane" width="250" height="200" loading="eager" srcset="/cdn/shop/files/solely_logo.png?width=125 125w, /cdn/shop/files/solely_logo.png?width=188 188w, /cdn/shop/files/solely_logo.png?width=250 250w, /cdn/shop/files/solely_logo.png?width=120 120w, /cdn/shop/files/solely_logo.png?width=180 180w, /cdn/shop/files/solely_logo.png?width=240 240w"
-                                                        sizes="(min-width: 750px) 125px, (min-width: 240px) 120px, calc((100vw - 64px) * 0.5)" fetchpriority="high" class=" is-loading ">
-                                                </figure>
-                                            </a>
-                                        </div>
-                                    </div>
+      .sleeh-nav-area {
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 20px;
+          margin-left: 0;
+      }
 
-                                    <div data-child-takes-space class="header__desktop__bar__c">
-                                        <nav class="header__menu" style="--highlight: #d02e2e;">
+      .sleeh-logo-area img {
+          height: 32px;
+      }
+  }
 
-                                            <div class="menu__item  child">
-                                                <a href="/" data-top-link class="navlink navlink--toplevel">
-    <span class="navtext">Home</span>
-  </a>
+  @media (max-width: 420px) {
+      .sleeh-nav-area a {
+          font-size: 14px;
+      }
+  }
+</style>
 
-                                            </div>
+<header class="sleeh-header-wrapper">
+  <div class="sleeh-header-main">
 
+    <!-- LOGO SECTION -->
+    <div class="sleeh-logo-area">
+      <a href="/">
+        <img 
+          src="/cdn/shop/files/solely_logo.png" 
+          alt="Sleeh Logo"
+        />
+      </a>
+    </div>
 
-                                            <div class="menu__item  child">
-                                                <a href="/heels.html" data-top-link class="navlink navlink--toplevel">
-    <span class="navtext">Shop Heels</span>
-  </a>
+    <!-- NAVIGATION SECTION -->
+    <nav class="sleeh-nav-area">
+      <a href="/">Home</a>
+      <a href="/heels.html">Shop Heels</a>
+      <a href="/flats.html">Shop Flats</a>
+    </nav>
 
-                                            </div>
+  </div>
+</header>
 
+</div>
+<!-- END UPDATED HEADER -->
 
-                                            <div class="menu__item  child">
-                                                <a href="/flats.html" data-top-link class="navlink navlink--toplevel">
-    <span class="navtext">Shop Flats</span>
-  </a>
+<!-- END CUSTOM ISOLATED HEADER -->
 
-                                            </div>
-                                            <div class="hover__bar"></div>
-
-                                            <div class="hover__bg"></div>
-                                        </nav>
-                                    </div>
-
-                                    <div data-child-takes-space class="header__desktop__bar__r">
-                                        <div class="header__desktop__buttons header__desktop__buttons--icons">
-                                            
-                                            <div class="header__desktop__button">
-                                                <a href="/cart" class="navlink navlink--cart navlink--cart--circle" title="Cart" data-cart-toggle>
-                                                    <div class="navlink__cart__content">
-                                                        <span class="visually-hidden">Cart</span>
-
-                                                        <span class="header__cart__status__holder">
-      <cart-count class="header__cart__status" data-status-separator=": " data-cart-count="0" data-limit="10">
-        0
-      </cart-count></span>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </header>
-
-                    <header-drawer class="drawer drawer--header" data-drawer="hamburger" aria-label="Menu" id="header-menu">
-                        <div class="drawer__inner" data-drawer-inner>
-                            <header class="drawer__head">
-                                <button class="drawer__close" data-drawer-close aria-label="Show menu" aria-haspopup="true" aria-expanded="true" aria-controls="header-menu"><svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-cancel" viewBox="0 0 24 24"><path d="M6.758 17.243 12.001 12m5.243-5.243L12 12m0 0L6.758 6.757M12.001 12l5.243 5.243" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-                            </header>
-
-                            <div class="drawer__body">
-                                <div class="drawer__content" data-drawer-content>
-                                    <div class="drawer__content__scroll" data-scroll-lock-scrollable>
-                                        <nav class="drawer__menu" data-scroll-lock-scrollable data-sliderule-pane="0" style="--highlight: #d02e2e;">
-                                            <div class="drawer__main-menu">
-                                                <div class="sliderule__wrapper">
-                                                    <div class="sliderow" role="button" data-animates="0" data-animation="drawer-items-fade" data-animation-delay="250" data-animation-duration="500">
-                                                        <a class="sliderow__title" href="/">
-      <span>
-        Home
-</span>
-    </a>
-                                                    </div>
-                                                </div>
-                                                <div class="sliderule__wrapper">
-                                                    <div class="sliderow" role="button" data-animates="0" data-animation="drawer-items-fade" data-animation-delay="300" data-animation-duration="500">
-                                                        <a class="sliderow__title" href="/heels.html">
-      <span>
-        Shop Heels
-</span>
-    </a>
-                                                    </div>
-                                                </div>
-                                                <div class="sliderule__wrapper">
-                                                    <div class="sliderow" role="button" data-animates="0" data-animation="drawer-items-fade" data-animation-delay="350" data-animation-duration="500">
-                                                        <a class="sliderow__title" href="/flats.html">
-      <span>
-        Shop Flats
-</span>
-    </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </nav>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <span class="underlay drawer__underlay" data-drawer-underlay></span>
-                    </header-drawer>
-                </header-component>
-
-                <div class="header__backfill" data-header-backfill></div>
-
-                <script type="application/ld+json">
-                    {
-                        "@context": "http://schema.org",
-                        "@type": "Organization",
-                        "name": "SolelyJane",
-
-                        "logo": "https:\/\/solelyjane.com\/cdn\/shop\/files\/solely_logo.png?width=500",
-
-                        "sameAs": [
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            "",
-                            ""
-                        ],
-                        "url": "https:\/\/solelyjane.com"
-                    }
-                </script>
-                <script type="application/ld+json">
-                    {
-                        "@context": "http://schema.org",
-                        "@type": "WebSite",
-                        "name": "SolelyJane",
-                        "potentialAction": {
-                            "@type": "SearchAction",
-                            "target": "https:\/\/solelyjane.com\/search?q={search_term_string}",
-                            "query-input": "required name=search_term_string"
-                        },
-                        "url": "https:\/\/solelyjane.com"
-                    }
-                </script>
-            </div>
-            <!-- END sections: group-header -->
-        </div>
 
         <!-- BEGIN sections: group-overlay -->
-        <div id="shopify-section-sections--19485518201082__cart-drawer" class="shopify-section shopify-section-group-group-overlay">
-            <script src="//solelyjane.com/cdn/shop/t/18/assets/quantity-counter.js?v=128495154429090953661747849695" defer="defer"></script>
-            <div data-section-id="sections--19485518201082__cart-drawer" data-section-type="cart-drawer">
-                <cart-drawer class="drawer drawer--cart is-empty color-scheme-1" id="cart-drawer" tabindex="0">
-                    <collapsible-elements class="drawer__inner" single="true" data-cart-drawer-inner data-scroll-lock-scrollable>
-                        <div class="drawer__body" data-cart-drawer-body data-scroll-lock-scrollable>
-                            <div class="cart-block body-medium cart-block--top drawer__head" data-animation="cart-items-fade" data-animation-duration="500" data-animation-delay="250">
-                                <h3 class="cart__title">
-                                    Cart
-
-                                    <cart-count class="cart__items-count" data-cart-count="0">0</cart-count>
-                                </h3>
-
-                                <button type="button" class="drawer__close" data-cart-drawer-close aria-label="Close Cart"><svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-cancel" viewBox="0 0 24 24"><path d="M6.758 17.243 12.001 12m5.243-5.243L12 12m0 0L6.758 6.757M12.001 12l5.243 5.243" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-                            </div>
-                            <div class="cart-block body-x-small" data-animation="cart-items-fade" data-animation-duration="500" data-animation-delay="300">
-                                <div class="drawer__message free-shipping" data-free-shipping="true" data-free-shipping-limit="99" style="--FREE-SHIPPING-GRADIENT: #ab8c52;"><span class="free-shipping__success-message">Congratulations! Your order qualifies for free shipping</span><span class="free-shipping__default-message">
-      You are <span data-left-to-spend>$99</span> away from free shipping.
-                                    </span><progress class="free-shipping__progress-bar" data-progress-bar value="0" max="100"></progress>
-                                    <div class="confetti">
-                                        <span class="confetti__dot confetti__dot--1"></span>
-                                        <span class="confetti__dot confetti__dot--2"></span>
-                                        <span class="confetti__dot confetti__dot--3"></span>
-                                        <span class="confetti__dot confetti__dot--4"></span>
-                                        <span class="confetti__dot confetti__dot--5"></span>
-                                        <span class="confetti__dot confetti__dot--6"></span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="cart-block body-x-small cart-block--items" data-animation="cart-items-fade" data-animation-duration="500" data-animation-delay="350">
-                                <div class="cart__errors drawer__errors" data-cart-errors data-animation="cart-items-fade" data-animation-duration="500" data-animation-delay="400">
-                                    <div class="cart__errors__inner">
-                                        <h5 class="cart__errors__heading">Sorry, looks like we don&#39;t have enough of this product.</h5>
-
-                                        <p class="cart__errors__content" data-error-message></p>
-
-                                        <button class="cart__errors__close" type="button" data-cart-error-close aria-label="Close Cart"><svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-cancel" viewBox="0 0 24 24"><path d="M6.758 17.243 12.001 12m5.243-5.243L12 12m0 0L6.758 6.757M12.001 12l5.243 5.243" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-                                    </div>
-                                </div>
-
-                                <div class="drawer__items-title">Products</div>
-
-                                <cart-items class="drawer__items" data-items-holder style="--base-animation-delay: 400ms"></cart-items>
-                            </div>
-                            <div class="cart-block " data-animation="cart-items-fade" data-animation-duration="500" data-animation-delay="400">
-                                <details class="cart__widget cart__widget--products accordion" data-collapsible data-upsell-widget data-upsell-auto-open>
-                                    <summary class="cart__widget__title" data-collapsible-trigger>Pair with<svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-plus" viewBox="0 0 24 24"><path d="M6 12h6m6 0h-6m0 0V6m0 6v6" stroke="#000" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                                        <svg
-                                            aria-hidden="true" focusable="false" role="presentation" class="icon icon-minus" viewBox="0 0 24 24">
-                                            <path d="M6 12h12" stroke="#000" stroke-linecap="round" stroke-linejoin="round" />
-                                            </svg>
-                                    </summary>
-
-                                    <div class="cart__widget__content" data-collapsible-body>
-                                        <div class="cart__widget__content__inner" data-collapsible-content>
-                                            <div class="cart__widget__products" data-upsell-products>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </details>
-                            </div>
-                            <div class="cart-block " data-animation="cart-items-fade" data-animation-duration="500" data-animation-delay="450">
-
-                                <details class="cart__widget accordion" data-collapsible>
-                                    <summary class="cart__widget__title" data-collapsible-trigger>Is this a gift?<svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-plus" viewBox="0 0 24 24"><path d="M6 12h6m6 0h-6m0 0V6m0 6v6" stroke="#000" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                                        <svg
-                                            aria-hidden="true" focusable="false" role="presentation" class="icon icon-minus" viewBox="0 0 24 24">
-                                            <path d="M6 12h12" stroke="#000" stroke-linecap="round" stroke-linejoin="round" />
-                                            </svg>
-                                    </summary>
-
-                                    <div class="cart__widget__content" data-collapsible-body>
-                                        <div class="cart__widget__content__inner" data-collapsible-content><label for="gift-note">Leave a note about your order</label>
-                                            <textarea id="gift-note" name="attributes[Gift note]" class="cart__field cart__field--textarea" form="cartForm" aria-label="Leave a note about your order"></textarea>
-                                        </div>
-                                    </div>
-                                </details>
-                            </div>
-                        </div>
-                        <div class="drawer__foot" data-checkout-buttons style="--base-animation-delay: 300ms;">
-                            <div class="cart-block body-x-small" data-animation="cart-items-fade" data-animation-duration="500" data-animation-delay="250">
-                                <div class="cart__message drawer__message drawer__message--custom text-left body-x-small" style="">
-                                    <p>The more products you add, the lower the price per shoe is!</p>
-                                </div>
-                            </div>
-                            <div class="cart-block " data-animation="cart-items-fade" data-animation-duration="500" data-animation-delay="300">
-                                <form id="cartForm" class="cart__form" action="/cart" method="post" novalidate data-cart-form>
-
-                                    <div class="cart__foot__inner">
-
-                                        <div class="cart__price__holder" data-cart-price-holder>
-                                            <div class="cart__total">
-                                                <span class="cart__total__label">Subtotal</span>
-
-                                                <span class="cart__total__price cart__total__price--animated" data-cart-total="0">Free
-</span>
-
-                                                <div class="cart__price__loader loader">
-                                                    <div class="loader-indeterminate"></div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="cart__buttons-all">
-
-                                            <div class="cart__buttons-wrapper">
-                                                <div class="cart__buttons" data-cart-checkout-buttons>
-                                                    <fieldset class="cart__buttons__fieldset" data-cart-checkout-button>
-                                                        <button type="submit" name="checkout" class="btn btn--primary btn--solid btn--full cart__checkout">Check Out</button></fieldset>
-                                                </div>
-                                            </div><a href="/cart" class="cart__view btn btn--primary btn--outline">View cart</a></div>
-
-                                        <em class="cart__note text-center">Shipping, taxes, and discount codes are calculated at checkout</em>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="drawer__empty" data-cart-empty data-scroll-lock-scrollable style="--base-animation-delay: 200ms">
-                            <div class="drawer__empty__inner">
-                                <p class="drawer__empty__message" data-animation="cart-items-fade" data-animation-duration="500" data-animation-delay="200">Your Cart is Empty</p>
-                                <div class="drawer__empty__buttons">
-                                    <div class="drawer__empty__item" data-animation="cart-items-fade" data-animation-duration="500" data-animation-delay="250">
-                                        <a href="/" class="btn btn--full btn--primary btn--outline">
-                      Home
-                    </a>
-                                    </div>
-                                    <div class="drawer__empty__item" data-animation="cart-items-fade" data-animation-duration="500" data-animation-delay="300">
-                                        <a href="/heels.html" class="btn btn--full btn--primary btn--outline">
-                      Shop Heels
-                    </a>
-                                    </div>
-                                    <div class="drawer__empty__item drawer__empty__item--odd--last" data-animation="cart-items-fade" data-animation-duration="500" data-animation-delay="350">
-                                        <a href="/flats.html" class="btn btn--full btn--primary btn--outline">
-                      Shop Flats
-                    </a>
-                                    </div>
-                                </div>
-                                <script src="//solelyjane.com/cdn/shop/t/18/assets/recently-viewed.js?v=59679838913625058831747849695" defer="defer"></script>
-
-                                <recently-viewed class="drawer__empty__product product__upsell--stacked hidden" id="recently-viewed-products-cart" data-limit="3" data-target="api-upsell-product" data-animation="cart-items-fade" data-animation-duration="500" data-animation-delay="400"></recently-viewed>
-                            </div>
-                        </div>
-                    </collapsible-elements>
-
-                    <span class="underlay drawer__underlay" data-drawer-underlay></span>
-                </cart-drawer>
-            </div>
-        </div>
+        
         <!-- END sections: group-overlay -->
 
         <!-- CONTENT -->
         <main role="main" id="MainContent" class="main-content">
-            <div id="shopify-section-template--19485517742330__section_hero_nYyLBU" class="shopify-section section-overlay-header">
-                <!-- /sections/section-hero.liquid -->
-                <style data-shopify>
-                    #Hero--template--19485517742330__section_hero_nYyLBU {
-                        --PT: 0px;
-                        --PB: 0px;
-                        --hero-content-width: 100%;
-                    }
+            <!-- CUSTOM HERO IMAGE SECTION -->
+<div id="sleeh-hero-wrapper">
 
-                    #Hero--template--19485517742330__section_hero_nYyLBU .image__hero__scale img {
-                        width: 100%;
-                        height: auto;
-                        object-fit: contain;
-                        display: block;
-                    }
+<style>
+  #sleeh-hero-wrapper {
+      width: 100%;
+      display: flex;
+      justify-content: space-evenly;
+      margin-top: 20px;
+  }
 
-                    #Hero--template--19485517742330__section_hero_nYyLBU .image__hero__scale video {
-                        width: 100%;
-                        height: auto;
-                        object-fit: contain;
-                        display: block;
-                    }
+  .sleeh-hero-container {
+      width: 96%;                /* controls left-right margin */
+      max-width: 1600px;        /* max width on big screens */
+  }
 
-                    #Hero--template--19485517742330__section_hero_nYyLBU .image__hero__scale {
-                        background-color: #ffffff;
-                    }
-                </style>
-                <div class="index-hero section-padding color-scheme-1" id="Hero--template--19485517742330__section_hero_nYyLBU" data-section-id="template--19485517742330__section_hero_nYyLBU" data-section-type="hero" data-overlay-header>
-                    <div class="hero__wrapper frame wrapper--full" style="margin: 0px 20px;">
-                        <div class="hero__images frame__item">
-                            <div class="hero__split-image">
-                                <div class="image__hero__frame image-height image-height--mobile" style="--aspect-ratio: 1.7777777777777777;--aspect-ratio-mobile: 1.0;">
-                                    <div class="image__hero__pane">
-                                        <div class="image__hero__scale image__fill lazy-image lazy-image--backfill is-loading">
-                                            <style data-shopify>
-                                                @media (min-width: 750px) {
-                                                    #Picture-336ee7488a56bc46dc8503b2a5876bf3 {
-                                                        --focal-point: 50.0% 50.0%;
-                                                    }
-                                                }
+  .sleeh-hero-container img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 8px;       /* optional - remove if not needed */
+  }
 
-                                                @media (max-width: 749px) {
-                                                    #Picture-336ee7488a56bc46dc8503b2a5876bf3 {
-                                                        --focal-point: 50.0% 50.0%;
-                                                    }
-                                                }
-                                            </style>
-                                            <img src="/cdn/shop/files/Holiday_Banner.jpeg" width="1080" height="1080" loading="eager" sizes="100vw" srcset="/cdn/shop/files/Holiday_Banner.jpeg 1x"
-                                                class="hero__banner is-loading" style="object-position: var(--focal-point, center)">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+  /* Mobile responsiveness */
+  @media (max-width: 650px) {
+      .sleeh-hero-container {
+          width: 96%;           /* slightly smaller margin on phones */
+      }
+  }
+</style>
 
-            </div>
-            <div id="shopify-section-template--19485517742330__section_custom_content_nQN4yD" class="shopify-section">
-                <style data-shopify>
-                    #BrickSection--template--19485517742330__section_custom_content_nQN4yD {
-                        --PT: 0px;
-                        --PB: 0px;
-                    }
+<div class="sleeh-hero-container">
+  <img 
+    src="/cdn/shop/files/Holiday_Banner.jpeg"
+    alt="Holiday Banner"
+  />
+</div>
 
-                    #BrickSection--template--19485517742330__section_custom_content_nQN4yD .image__hero__scale video {
-                        width: 100%;
-                        height: auto;
-                        object-fit: contain;
-                        display: block;
-                    }
-                </style>
-                <section id="BrickSection--template--19485517742330__section_custom_content_nQN4yD" data-section-id="template--19485517742330__section_custom_content_nQN4yD" data-section-type="custom-content" data-overlay-header class="section-padding color-scheme-1">
-                    <div class="brick__section  wrapper--full">
-                        <div class="brick__block" style="--bg: #fcfbf9;--text: #ffffff;
-    --text-light: #fefefd;
-    --text-dark: #d9d9d9;--overlay-bg: #000000;">
-                            <div class="brick__block__image frame" >
-                                <div class="frame__item">
-                                    <div class="image__hero__frame screen-height-one-half screen-height-one-half--mobile" style="--aspect-ratio: 1.5;--aspect-ratio-mobile: 1.5;">
-                                        <div class="image__hero__pane">
-                                            <div class="image__hero__scale image__fill lazy-image lazy-image--backfill is-loading">
-                                                <video autoplay loop muted playsinline preload="metadata" class="is-loading" width="1080" height="720" style="object-position: center; object-fit: contain; width: 100%; height: auto;">
-                                                    <source src="/cdn/shop/files/Solely_Jane_Gif_5.mp4" type="video/mp4">
-                                                </video>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+</div>
+<!-- END CUSTOM HERO IMAGE SECTION -->
 
-                        <div class="brick__block brick__block--text" style="--bg: #fcfbf9;">
-                            <div class="brick__block__text">
-                                <div class="hero__content hero__content--compact text-left">
-                                    
-                                    <h2 class="hero__title heading-large" data-aos="hero" data-aos-anchor="#BrickSection--template--19485517742330__section_custom_content_nQN4yD" data-aos-order="2">Interchangeable Shoes</h2>
-                                    <div class="hero__rte body-medium columns--1" data-aos="hero" data-aos-anchor="#BrickSection--template--19485517742330__section_custom_content_nQN4yD" data-aos-order="3">
-                                        <p>Travel Lighter | Save Space | Endless Styles</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-
-            </div>
-            <div id="shopify-section-template--19485517742330__section_custom_content_BKePFF" class="shopify-section">
-                <style data-shopify>
-                    #BrickSection--template--19485517742330__section_custom_content_BKePFF {
-                        --PT: 0px;
-                        --PB: 0px;
-                    }
-                </style>
-                <section id="BrickSection--template--19485517742330__section_custom_content_BKePFF" data-section-id="template--19485517742330__section_custom_content_BKePFF" data-section-type="custom-content" data-overlay-header class="section-padding color-scheme-1">
-                    <div class="brick__section  wrapper--full-padded" style="padding-top: 100px;">
-                        <div class="brick__block" style="--bg: #fcfbf9;--text: #ffffff;
-    --text-light: #fefefd;
-    --text-dark: #d9d9d9;--overlay-bg: #000000;">
-                            <div class="brick__block__image frame">
-                                <div class="frame__item">
-                                    <div class="image__hero__frame screen-height-one-half screen-height-one-half--mobile" style="--aspect-ratio: 1.0;--aspect-ratio-mobile: 1.0;">
-                                        <div class="image__hero__pane">
-                                            <div class="image__hero__scale image__fill lazy-image lazy-image--backfill is-loading"><img src="//solelyjane.com/cdn/shop/files/Soley_Jane_-_Lifestyle-SQ-1_06df242e-a1de-4a73-b892-4ddc835753a8.jpg?v=1715183424&amp;width=4000" width="4000" height="4000" loading="lazy" srcset="//solelyjane.com/cdn/shop/files/Soley_Jane_-_Lifestyle-SQ-1_06df242e-a1de-4a73-b892-4ddc835753a8.jpg?v=1715183424&amp;width=180 180w, //solelyjane.com/cdn/shop/files/Soley_Jane_-_Lifestyle-SQ-1_06df242e-a1de-4a73-b892-4ddc835753a8.jpg?v=1715183424&amp;width=360 360w, //solelyjane.com/cdn/shop/files/Soley_Jane_-_Lifestyle-SQ-1_06df242e-a1de-4a73-b892-4ddc835753a8.jpg?v=1715183424&amp;width=540 540w, //solelyjane.com/cdn/shop/files/Soley_Jane_-_Lifestyle-SQ-1_06df242e-a1de-4a73-b892-4ddc835753a8.jpg?v=1715183424&amp;width=720 720w, //solelyjane.com/cdn/shop/files/Soley_Jane_-_Lifestyle-SQ-1_06df242e-a1de-4a73-b892-4ddc835753a8.jpg?v=1715183424&amp;width=900 900w, //solelyjane.com/cdn/shop/files/Soley_Jane_-_Lifestyle-SQ-1_06df242e-a1de-4a73-b892-4ddc835753a8.jpg?v=1715183424&amp;width=1080 1080w, //solelyjane.com/cdn/shop/files/Soley_Jane_-_Lifestyle-SQ-1_06df242e-a1de-4a73-b892-4ddc835753a8.jpg?v=1715183424&amp;width=1296 1296w, //solelyjane.com/cdn/shop/files/Soley_Jane_-_Lifestyle-SQ-1_06df242e-a1de-4a73-b892-4ddc835753a8.jpg?v=1715183424&amp;width=1512 1512w, //solelyjane.com/cdn/shop/files/Soley_Jane_-_Lifestyle-SQ-1_06df242e-a1de-4a73-b892-4ddc835753a8.jpg?v=1715183424&amp;width=1728 1728w, //solelyjane.com/cdn/shop/files/Soley_Jane_-_Lifestyle-SQ-1_06df242e-a1de-4a73-b892-4ddc835753a8.jpg?v=1715183424&amp;width=1950 1950w, //solelyjane.com/cdn/shop/files/Soley_Jane_-_Lifestyle-SQ-1_06df242e-a1de-4a73-b892-4ddc835753a8.jpg?v=1715183424&amp;width=2100 2100w, //solelyjane.com/cdn/shop/files/Soley_Jane_-_Lifestyle-SQ-1_06df242e-a1de-4a73-b892-4ddc835753a8.jpg?v=1715183424&amp;width=2260 2260w, //solelyjane.com/cdn/shop/files/Soley_Jane_-_Lifestyle-SQ-1_06df242e-a1de-4a73-b892-4ddc835753a8.jpg?v=1715183424&amp;width=2450 2450w, //solelyjane.com/cdn/shop/files/Soley_Jane_-_Lifestyle-SQ-1_06df242e-a1de-4a73-b892-4ddc835753a8.jpg?v=1715183424&amp;width=2700 2700w, //solelyjane.com/cdn/shop/files/Soley_Jane_-_Lifestyle-SQ-1_06df242e-a1de-4a73-b892-4ddc835753a8.jpg?v=1715183424&amp;width=3000 3000w, //solelyjane.com/cdn/shop/files/Soley_Jane_-_Lifestyle-SQ-1_06df242e-a1de-4a73-b892-4ddc835753a8.jpg?v=1715183424&amp;width=3350 3350w, //solelyjane.com/cdn/shop/files/Soley_Jane_-_Lifestyle-SQ-1_06df242e-a1de-4a73-b892-4ddc835753a8.jpg?v=1715183424&amp;width=3750 3750w"
-                                                    sizes="(min-width: 990px) calc((100vw - 100px) / 2), (min-width: 750px) calc((100vw - 60px) / 2), calc(100vw - 32px - 50px)" class="is-loading">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                            </div>
-                        </div>
-
-                        <div class="brick__block" style="--bg: #fcfbf9;--text: #ffffff;
-    --text-light: #fefefd;
-    --text-dark: #d9d9d9;--overlay-bg: #000000;">
-                            <div class="brick__block__image frame">
-                                <div class="frame__item">
-                                    <div class="image__hero__frame screen-height-one-half screen-height-one-half--mobile" style="--aspect-ratio: 0.75;--aspect-ratio-mobile: 0.75;">
-                                        <div class="image__hero__pane">
-                                            <div class="image__hero__scale image__fill lazy-image lazy-image--backfill is-loading"><img src="//solelyjane.com/cdn/shop/files/IMG_2304_jpg.jpg?v=1716400866&amp;width=3024" width="3024" height="4032" loading="lazy" srcset="//solelyjane.com/cdn/shop/files/IMG_2304_jpg.jpg?v=1716400866&amp;width=180 180w, //solelyjane.com/cdn/shop/files/IMG_2304_jpg.jpg?v=1716400866&amp;width=360 360w, //solelyjane.com/cdn/shop/files/IMG_2304_jpg.jpg?v=1716400866&amp;width=540 540w, //solelyjane.com/cdn/shop/files/IMG_2304_jpg.jpg?v=1716400866&amp;width=720 720w, //solelyjane.com/cdn/shop/files/IMG_2304_jpg.jpg?v=1716400866&amp;width=900 900w, //solelyjane.com/cdn/shop/files/IMG_2304_jpg.jpg?v=1716400866&amp;width=1080 1080w, //solelyjane.com/cdn/shop/files/IMG_2304_jpg.jpg?v=1716400866&amp;width=1296 1296w, //solelyjane.com/cdn/shop/files/IMG_2304_jpg.jpg?v=1716400866&amp;width=1512 1512w, //solelyjane.com/cdn/shop/files/IMG_2304_jpg.jpg?v=1716400866&amp;width=1728 1728w, //solelyjane.com/cdn/shop/files/IMG_2304_jpg.jpg?v=1716400866&amp;width=1950 1950w, //solelyjane.com/cdn/shop/files/IMG_2304_jpg.jpg?v=1716400866&amp;width=2100 2100w, //solelyjane.com/cdn/shop/files/IMG_2304_jpg.jpg?v=1716400866&amp;width=2260 2260w, //solelyjane.com/cdn/shop/files/IMG_2304_jpg.jpg?v=1716400866&amp;width=2450 2450w, //solelyjane.com/cdn/shop/files/IMG_2304_jpg.jpg?v=1716400866&amp;width=2700 2700w, //solelyjane.com/cdn/shop/files/IMG_2304_jpg.jpg?v=1716400866&amp;width=3000 3000w"
-                                                    sizes="(min-width: 990px) calc((100vw - 100px) / 2), (min-width: 750px) calc((100vw - 60px) / 2), calc(100vw - 32px - 50px)" class="is-loading">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-
-            </div>
-            <div id="shopify-section-template--19485517742330__section_rich_text_xApc7k" class="shopify-section">
-                <!-- /sections/section-rich-text.liquid -->
-                <style data-shopify>
-                    #Rte--template--19485517742330__section_rich_text_xApc7k {
-                        --PT: 58px;
-                        --PB: 0px;
-                    }
-                </style>
-                <section id="Rte--template--19485517742330__section_rich_text_xApc7k" class="index-rte section-padding color-scheme-1" data-section-id="template--19485517742330__section_rich_text_xApc7k" data-section-type="rich-text">
-                    <div class="hero__content__wrapper text-center wrapper--narrow">
-                        <div class="hero__content hero__content--compact hero__content--transparent">
-                            
-                        </div>
-                    </div>
-                </section>
-
-
-            </div>
             
-            <div id="shopify-section-template--19485517742330__image-with-text" class="shopify-section">
-                <style data-shopify>
-                    #BrickSection--template--19485517742330__image-with-text {
-                        --PT: 0px;
-                        --PB: 0px;
-                    }
-                </style>
-                <section id="BrickSection--template--19485517742330__image-with-text" data-section-id="template--19485517742330__image-with-text" data-section-type="custom-content" data-overlay-header class="section-padding color-scheme-1">
-                    <div class="brick__section  wrapper--full">
-                        <div class="brick__block" style="--bg: #fcfbf9;--text: #ffffff;
-    --text-light: #fefefd;
-    --text-dark: #d9d9d9;--overlay-bg: #000000;">
-                            <div class="brick__block__image frame">
-                                <a class="frame__item" href="/collections/all">
-                                    <div class="image__hero__frame image-height image-height--mobile" style="--aspect-ratio: 1.0;--aspect-ratio-mobile: 1.0;">
-                                        <div class="image__hero__pane">
-                                            <div class="image__hero__scale image__fill lazy-image lazy-image--backfill is-loading"><img src="//solelyjane.com/cdn/shop/files/SolelyJane_Sandals_Gif.gif?v=1711656889&amp;width=600" width="600" height="600" loading="lazy" srcset="//solelyjane.com/cdn/shop/files/SolelyJane_Sandals_Gif.gif?v=1711656889&amp;width=180 180w, //solelyjane.com/cdn/shop/files/SolelyJane_Sandals_Gif.gif?v=1711656889&amp;width=360 360w, //solelyjane.com/cdn/shop/files/SolelyJane_Sandals_Gif.gif?v=1711656889&amp;width=540 540w"
-                                                    sizes="(min-width: 750px) 50vw, 100vw" class="is-loading">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
+                    <!-- CUSTOM GIF + TEXT SECTION -->
+<div id="sleeh-gif-section">
 
+<style>
+  #sleeh-gif-section {
+      width: 100%;
+      background: #fcfbf9;
+      padding: 40px 0;
+  }
 
-                            <div class="brick__block__text has-padding">
-                                <div class="hero__content hero__content--compact text-left">
-                                    <h2 class="hero__title heading-large" data-aos="hero" data-aos-anchor="#BrickSection--template--19485517742330__image-with-text" data-aos-order="1">Transform Your Style</h2>
-                                    <div class="hero__rte body-medium columns--1" data-aos="hero" data-aos-anchor="#BrickSection--template--19485517742330__image-with-text" data-aos-order="2">
-                                        <p>One shoe, endless styles. Create the perfect look for any occasion. Pair a Solemate with a top for the ideal ensemble, no matter where your feet take you.</p>
-                                    </div>
-                                    <div class="hero__button" data-aos="hero" data-aos-anchor="#BrickSection--template--19485517742330__image-with-text" data-aos-order="3">
-                                        <a href="/heels.html" class="btn btn--solid  btn--primary">
-            <span>Shop Now</span><svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-arrow-right" viewBox="0 0 24 24"><path d="M6 12h12.5m0 0-6-6m6 6-6 6" stroke="#000" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+  .sleeh-gif-container {
+      width: 96%;
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+  }
+
+  .sleeh-gif-left {
+      width: 55%;
+  }
+
+  .sleeh-gif-left video {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 10px;
+  }
+
+  .sleeh-gif-right {
+      width: 45%;
+      color: #333;
+  }
+
+  .sleeh-gif-title {
+      font-size: 32px;
+      margin-bottom: 10px;
+  }
+
+  .sleeh-gif-subtitle {
+      font-size: 18px;
+      color: #555;
+  }
+
+  /* RESPONSIVENESS */
+
+  @media (max-width: 900px) {
+      .sleeh-gif-container {
+          flex-direction: column;
+          text-align: center;
+      }
+
+      .sleeh-gif-left,
+      .sleeh-gif-right {
+          width: 100%;
+      }
+
+      .sleeh-gif-title {
+          font-size: 26px;
+      }
+  }
+
+  @media (max-width: 500px) {
+      .sleeh-gif-title {
+          font-size: 22px;
+      }
+
+      .sleeh-gif-subtitle {
+          font-size: 16px;
+      }
+  }
+</style>
+
+<div class="sleeh-gif-container">
+
+  <!-- LEFT: GIF -->
+  <div class="sleeh-gif-left">
+    <video autoplay loop muted playsinline preload="metadata">
+      <source src="/cdn/shop/files/Solely_Jane_Gif_5.mp4" type="video/mp4">
+    </video>
+  </div>
+
+  <!-- RIGHT: TEXT -->
+  <div class="sleeh-gif-right">
+    <h2 class="sleeh-gif-title">Interchangeable Shoes</h2>
+    <p class="sleeh-gif-subtitle">
+      Travel Lighter | Save Space | Endless Styles
+    </p>
+  </div>
+
+</div>
+
+</div>
+<!-- END CUSTOM GIF SECTION -->
+
                 </section>
+
+
+            <!-- CUSTOM TWO IMAGE SECTION -->
+<div id="sleeh-two-image-section">
+
+<style>
+  #sleeh-two-image-section {
+      width: 100%;
+      background: #fcfbf9;
+      padding: 60px 0;
+  }
+
+  .sleeh-two-image-container {
+      width: 96%;
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: stretch;      /* key change */
+      gap: 30px;
+  }
+
+  .sleeh-image-box {
+      width: 50%;
+      height: 520px;             /* fixed equal height */
+      overflow: hidden;
+      border-radius: 10px;
+  }
+
+  .sleeh-image-box img {
+      width: 100%;
+      height: 100%;              /* force same height */
+      object-fit: cover;         /* crop equally if needed */
+      display: block;
+  }
+
+  /* RESPONSIVENESS */
+
+  @media (max-width: 900px) {
+      .sleeh-two-image-container {
+          flex-direction: column;
+          gap: 20px;
+      }
+
+      .sleeh-image-box {
+          width: 100%;
+          height: auto;          /* revert on mobile */
+      }
+
+      .sleeh-image-box img {
+          height: auto;
+          object-fit: contain;   /* show full image on mobile */
+      }
+  }
+
+  @media (max-width: 500px) {
+      #sleeh-two-image-section {
+          padding: 40px 0;
+      }
+  }
+</style>
+
+
+<div class="sleeh-two-image-container">
+
+  <!-- LEFT IMAGE -->
+  <div class="sleeh-image-box">
+    <img 
+      src="//solelyjane.com/cdn/shop/files/Soley_Jane_-_Lifestyle-SQ-1_06df242e-a1de-4a73-b892-4ddc835753a8.jpg"
+      alt="Lifestyle Image 1"
+    />
+  </div>
+
+  <!-- RIGHT IMAGE -->
+  <div class="sleeh-image-box">
+    <img 
+      src="//solelyjane.com/cdn/shop/files/IMG_2304_jpg.jpg"
+      alt="Lifestyle Image 2"
+    />
+  </div>
+
+</div>
+
+</div>
+<!-- END CUSTOM TWO IMAGE SECTION -->
+
+                    
+                </section>
+
+
+            
+
+
+            
+                 <!-- TRANSFORM YOUR STYLE SECTION (FIXED RESPONSIVE VERSION) -->
+
+<style>
+  /* Isolated styling - no conflict with theme */
+
+  #sleeh-style-section {
+      width: 100%;
+      background: #fcfbf9;
+      padding: 60px 0;
+  }
+
+  .sleeh-style-container {
+      width: 96%;
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+  }
+
+  .sleeh-style-gif {
+      width: 50%;
+      height: 520px;
+      overflow: hidden;
+      border-radius: 10px;
+  }
+
+  .sleeh-style-gif img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+  }
+
+  .sleeh-style-text {
+      width: 50%;
+      padding: 20px;
+  }
+
+  .sleeh-style-text h2 {
+      font-size: 32px;
+      margin-bottom: 15px;
+      font-weight: 600;
+  }
+
+  .sleeh-style-text p {
+      font-size: 16px;
+      line-height: 1.6;
+      margin-bottom: 20px;
+      color: #333;
+  }
+
+  .sleeh-style-btn {
+      display: inline-block;
+      padding: 12px 26px;
+      background: #000;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 6px;
+      font-size: 15px;
+      transition: all 0.3s ease;
+  }
+
+  .sleeh-style-btn:hover {
+      background: #333;
+  }
+
+  /* RESPONSIVENESS */
+
+  @media (max-width: 900px) {
+      .sleeh-style-container {
+          flex-direction: column;
+      }
+
+      .sleeh-style-gif,
+      .sleeh-style-text {
+          width: 100%;
+      }
+
+      .sleeh-style-gif {
+          height: auto;
+      }
+
+      .sleeh-style-gif img {
+          height: auto;
+          object-fit: contain;
+      }
+
+      .sleeh-style-text {
+          text-align: center;
+      }
+  }
+
+  @media (max-width: 500px) {
+      #sleeh-style-section {
+          padding: 40px 0;
+      }
+
+      .sleeh-style-text h2 {
+          font-size: 26px;
+      }
+  }
+</style>
+
+
+<section id="sleeh-style-section">
+
+  <div class="sleeh-style-container">
+
+      <!-- LEFT GIF -->
+      <div class="sleeh-style-gif">
+          <a href="/collections/all">
+              <img 
+                src="/cdn/shop/files/SolelyJane_Sandals_Gif.gif" 
+                alt="Solely Jane Styles">
+          </a>
+      </div>
+
+      <!-- RIGHT TEXT -->
+      <div class="sleeh-style-text">
+          <h2>Transform Your Style</h2>
+
+          <p>
+              One shoe, endless styles. Create the perfect look for any occasion. 
+              Pair a Solemate with a top for the ideal ensemble, no matter where your feet take you.
+          </p>
+
+          <a href="/heels.html" class="sleeh-style-btn">
+              Shop Now
+          </a>
+      </div>
+
+  </div>
+
+</section>
+
 
 
             </div>

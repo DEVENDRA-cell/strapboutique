@@ -26506,11 +26506,11 @@ body.has-header-sticky .timeline {
         width: 110px !important;
     }
 
-    .logo__img {
-        position: relative !important;
-        width: 100% !important;
-        height: auto !important;
-    }
+        .logo__img {
+            position: relative !important;
+            width: 100% !important;
+            height: auto !important;
+        }
 
     .logo__img img {
         position: relative !important;
@@ -26637,4 +26637,70 @@ video.is-loading,
     z-index: auto !important;
     display: block !important;
     clear: both !important;
+}
+/* Force desktop header to remain visible on all screen sizes */
+@media (max-width: 1000px) {
+  .header__desktop {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  /* Prevent any mobile menu from taking over */
+  .header__mobile,
+  .mobile-menu,
+  .header__drawer,
+  .header__hamburger {
+    display: none !important;
+  }
+}
+@media (max-width: 650px) {
+  .header__desktop__upper {
+    flex-wrap: wrap !important;
+    min-height: auto !important;
+  }
+
+  .header__desktop__bar__c {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+
+  .header__menu {
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+  }
+
+  .menu__item {
+    margin: 5px 10px !important;
+  }
+}
+.header__logo__link img {
+    height: auto !important;
+    max-height: 40px !important;
+    width: auto !important;
+    margin-top: 10px !important;
+}
+@media (max-width: 650px) {
+  .header__desktop__bar__l,
+  .header__desktop__bar__c,
+  .header__desktop__bar__r {
+    display: flex !important;
+    align-items: center !important;
+  }
+
+  .navlink--toplevel {
+    font-size: 14px !important;
+  }
+}
+.main-hero-image {
+  width: 100% !important;
+  height: auto !important;
+  max-width: 100% !important;
+  object-fit: contain !important;
+}
+.is-loading {
+  width: 100% !important;
+  height: auto !important;
+  max-width: 100% !important;
+  object-fit: contain !important;
 }
