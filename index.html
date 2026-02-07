@@ -12,7 +12,7 @@
     <!-- ======================= Broadcast Theme V6.2.0 ========================= -->
 
 
-    
+
     <!-- Title and description ================================================ -->
 
 
@@ -40,19 +40,33 @@
         content="Premium detachable shoe straps to transform your shoes instantly. Style, comfort, and versatility in one smart accessory.">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    </head>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
 
-<style>
-  body {
-      font-family: 'Poppins', sans-serif;
-  }
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: 'Montserrat', sans-serif;
+        }
+        /* Universal container to keep margins consistent */
+.sleeh-container {
+    width: 96%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
 
-  h1, h2, h3, h4, h5, h6 {
-      font-family: 'Montserrat', sans-serif;
-  }
-</style>
+    </style>
 
     <div class="container" data-site-container>
         <!-- CUSTOM ISOLATED HEADER (NO THEME CONFLICTS) -->
@@ -61,10 +75,10 @@
 
             <style>
                 #sleeh-custom-header-container {
-                    width: 100%;
+                    width: 96%;
                     background: white;
                     border-bottom: 1px solid #eee;
-                    font-family:"Poppins",sans-serif;
+                    font-family: "Poppins", sans-serif;
                 }
 
                 .sleeh-header-wrapper {
@@ -198,8 +212,8 @@
                 </style>
 
                 <div class="sleeh-hero-container">
-                    
-                        <img src="/images/Holiday_Banner.jpeg" alt="Holiday Banner" />
+
+                    <img src="/images/Holiday_Banner.jpeg" alt="Holiday Banner" />
                     </a>
                 </div>
 
@@ -315,7 +329,7 @@
                     .sleeh-two-image-container {
                         display: flex;
                         gap: 20px;
-                        width: 96%;
+                        width: 100%;
                         max-width: 1400px;
                         margin: 40px auto;
                     }
@@ -392,8 +406,7 @@
 
                     <!-- FLATS IMAGE -->
                     <a href="/flats.html" class="sleeh-image-box">
-                        <img src="/images/flat.jpg"
-                            alt="Flats Collection" />
+                        <img src="/images/flat.jpg" alt="Flats Collection" />
                         <div class="sleeh-overlay-text">FLATS</div>
                     </a>
 
@@ -419,209 +432,202 @@
 
                 <!-- TRANSFORM YOUR STYLE SECTION – FINAL FIXED VERSION WITH ANIMATION -->
 
-<style>
-/* ===== ISOLATED SECTION STYLING ===== */
-#sleeh-style-section {
-    width: 100%;
-    background: #fcfbf9;
-    padding: 60px 0;
-    font-family: "Poppins", sans-serif;
-}
+                <style>
+                    /* ---- MAIN SECTION ---- */
 
-/* FIXED CONTAINER */
-.sleeh-style-container {
-    width: 96%;
-    max-width: 1400px;
-    margin: 0 auto;
+                    #sleeh-style-section {
+                        width: 100%;
+                        padding: 80px 0;
+                        background: #ffffff;
+                        box-sizing: border-box;
+                    }
 
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+                    .sleeh-style-container {
+                        width: 100%;
+                        max-width: 1400px;
+                        margin: 0 auto;
 
-    gap: 40px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        gap: 60px;
+                    }
 
-    /* IMPORTANT FIX */
-    flex-wrap: nowrap;
-}
+                    /* ---- IMAGE SIDE ---- */
 
-/* LEFT GIF BLOCK */
-.sleeh-style-gif {
-    width: 50%;
-    max-width: 50%;
-    height: 520px;
+                    .sleeh-style-gif {
+                        flex: 1;
+                        width: 100%;
+                    }
 
-    overflow: hidden;
-    border-radius: 10px;
+                    .sleeh-style-gif img {
+                        width: 100%;
+                        height: auto;
+                        display: block;
+                        border-radius: 10px;
+                    }
 
-    /* Prevent shrinking */
-    flex-shrink: 0;
-}
+                    /* ---- TEXT SIDE ---- */
 
-.sleeh-style-gif img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
+                    .sleeh-style-text {
+                        flex: 1;
+                    }
 
-/* RIGHT TEXT BLOCK */
-.sleeh-style-text {
-    width: 50%;
-    max-width: 50%;
+                    .sleeh-style-text h2 {
+                        font-size: 34px;
+                        margin-bottom: 18px;
+                        font-weight: 600;
+                    }
 
-    padding: 20px;
-    font-family: "Poppins", sans-serif;
+                    .sleeh-style-text p {
+                        font-size: 17px;
+                        line-height: 1.7;
+                        color: #333;
+                    }
 
-    /* Prevent shrinking */
-    flex-shrink: 0;
-}
+                    /* ---- MARQUEE TEXT ---- */
 
-.sleeh-style-text h2 {
-    font-size: 32px;
-    margin-bottom: 15px;
-    font-weight: 600;
-}
+                    .sleeh-between-text {
+                        width: 100%;
+                        overflow: hidden;
+                        background: #f7f7f7;
+                        padding: 12px 0;
+                        margin-bottom: 40px;
+                    }
 
-.sleeh-style-text p {
-    font-size: 16px;
-    line-height: 1.6;
-    margin-bottom: 20px;
-    color: #333;
-}
+                    .sleeh-marquee {
+                        white-space: nowrap;
+                        display: flex;
+                        animation: sleeh-scroll 20s linear infinite;
+                    }
 
-.sleeh-style-btn {
-    display: inline-block;
-    padding: 12px 26px;
-    background: #000;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 6px;
-    font-size: 15px;
-    transition: all 0.3s ease;
-}
+                    .sleeh-marquee span {
+                        font-size: 16px;
+                        color: #222;
+                    }
 
-.sleeh-style-btn:hover {
-    background: #333;
-}
+                    @keyframes sleeh-scroll {
+                        from {
+                            transform: translateX(0%);
+                        }
 
-/* ===== ANIMATED MARQUEE TEXT ===== */
+                        to {
+                            transform: translateX(-50%);
+                        }
+                    }
 
-.sleeh-between-text {
-    width: 96%;
-    max-width: 1400px;
-    margin: 0 auto 30px auto;
+                    /* -------- RESPONSIVENESS -------- */
 
-    overflow: hidden;
-    /* background: #f7f2eb; */
-    padding: 15px 0;
-    border-radius: 8px;
-}
+                    /* Tablets */
 
-.sleeh-marquee {
-    white-space: nowrap;
-    overflow: hidden;
-    display: block;
-}
+                    @media (max-width: 1000px) {
 
-.sleeh-marquee span {
-    display: inline-block;
-    font-family: "Poppins", sans-serif;
-    font-size: 22px;
-    color: black;
+                        .sleeh-style-container {
+                            gap: 40px;
+                            width: 100%;
+                        }
 
-    padding-left: 100%;
-    animation: sleeh-scroll 20s linear infinite;
-}
+                        .sleeh-style-text h2 {
+                            font-size: 28px;
+                        }
 
-@keyframes sleeh-scroll {
-    from {
-        transform: translateX(0);
-    }
-    to {
-        transform: translateX(-100%);
-    }
-}
-
-/* ===== RESPONSIVENESS ===== */
-
-@media (max-width: 900px) {
-
-    .sleeh-style-container {
-        flex-wrap: wrap;
-        flex-direction: column;
-    }
-
-    .sleeh-style-gif,
-    .sleeh-style-text {
-        width: 100%;
-        max-width: 100%;
-    }
-
-    .sleeh-style-gif {
-        height: auto;
-    }
-
-    .sleeh-style-gif img {
-        height: auto;
-        object-fit: contain;
-    }
-
-    .sleeh-style-text {
-        text-align: center;
-    }
-}
-
-@media (max-width: 500px) {
-    #sleeh-style-section {
-        padding: 40px 0;
-    }
-
-    .sleeh-style-text h2 {
-        font-size: 26px;
-    }
-}
+                        .sleeh-style-text p {
+                            font-size: 16px;
+                        }
+                    }
 
 
-</style>
+                    /* Mobile Layout */
+
+                    @media (max-width: 900px) {
+
+                        .sleeh-style-container {
+                            flex-direction: column;
+                            text-align: center;
+                            width: 90%;
+                        }
+
+                        .sleeh-style-gif {
+                            width: 100%;
+                        }
+
+                        .sleeh-style-text h2 {
+                            font-size: 26px;
+                        }
+
+                        .sleeh-style-text p {
+                            font-size: 15px;
+                        }
+
+                        .sleeh-between-text {
+                            margin-bottom: 30px;
+                        }
+                    }
 
 
-<section id="sleeh-style-section">
+                    /* Small Phones */
 
-    <!-- ANIMATED TEXT (PLACED CORRECTLY ABOVE CONTENT) -->
-    <div class="sleeh-between-text">
-        <div class="sleeh-marquee">
-            <span>
-                We’ll be releasing our new designs very soon, followed by the official sales launch. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                We’ll be releasing our new designs very soon, followed by the official sales launch. 
+                    @media (max-width: 500px) {
 
-            </span>
-        </div>
-    </div>
+                        #sleeh-style-section {
+                            padding: 50px 0;
+                        }
 
-    <div class="sleeh-style-container">
+                        .sleeh-style-text h2 {
+                            font-size: 22px;
+                        }
 
-        <!-- LEFT GIF -->
-        <div class="sleeh-style-gif">
-            <a >
-                <img src="/images/2ndtop.gif" alt="Styles">
-            </a>
-        </div>
+                        .sleeh-style-text p {
+                            font-size: 14px;
+                        }
 
-        <!-- RIGHT TEXT -->
-        <div class="sleeh-style-text">
-            <h2>Transform Your Style</h2>
-
-            <p>
-                One shoe, endless styles. Create the perfect look for any occasion.
-                Pair a Solemate with a top for the ideal ensemble, no matter where your feet take you.
-            </p>
+                        .sleeh-marquee span {
+                            font-size: 14px;
+                        }
+                    }
+                </style>
 
 
-        </div>
 
-    </div>
 
-</section>
+                <section id="sleeh-style-section">
+
+                    <!-- ANIMATED TEXT (PLACED CORRECTLY ABOVE CONTENT) -->
+                    <div class="sleeh-between-text">
+                        <div class="sleeh-marquee">
+                            <span>
+                                We’ll be releasing our new designs very soon, followed by the official sales launch.
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                We’ll be releasing our new designs very soon, followed by the official sales launch.
+
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="sleeh-style-container">
+
+                        <!-- LEFT GIF -->
+                        <div class="sleeh-style-gif">
+
+                            <img src="/images/2ndtop.gif" alt="Styles">
+
+                        </div>
+
+                        <!-- RIGHT TEXT -->
+                        <div class="sleeh-style-text">
+                            <h2>Transform Your Style</h2>
+
+                            <p>
+                                One shoe, endless styles. Create the perfect look for any occasion.
+                                Pair a Solemate with a top for the ideal ensemble, no matter where your feet take you.
+                            </p>
+
+
+                        </div>
+
+                    </div>
+
+                </section>
 
 
 
@@ -726,7 +732,7 @@
 
                     @media (max-width: 500px) {
                         #sleeh-travel-section {
-                            padding: 40px 0;
+                            /* padding: 40px 0; */
                         }
 
                         .sleeh-travel-text h2 {
@@ -750,7 +756,8 @@
                             <h2>Travel Like a Pro</h2>
 
                             <p>
-                              SLEEH Straps: One Shoe, Endless Styles. Now you can have a new look for every day of your vacation.
+                                SLEEH Straps: One Shoe, Endless Styles. Now you can have a new look for every day of
+                                your vacation.
                             </p>
 
                             <a href="https://chat.whatsapp.com/JMcWR2WVg5WAhdL6AA489X?mode=gi_t"
@@ -832,9 +839,8 @@
                             Connect with us on WhatsApp to explore our collection and find your perfect strap.
                         </p>
 
-                        <a class="sleeh-whatsapp-btn"
-                            href="https://chat.whatsapp.com/JMcWR2WVg5WAhdL6AA489X?mode=gi_t" target="_blank"
-                            rel="noopener">
+                        <a class="sleeh-whatsapp-btn" href="https://chat.whatsapp.com/JMcWR2WVg5WAhdL6AA489X?mode=gi_t"
+                            target="_blank" rel="noopener">
                             Join us on WhatsApp
                         </a>
                     </div>
@@ -844,136 +850,163 @@
                 <!-- CUSTOM CLEAN FOOTER (CONFLICT FREE) -->
 
                 <style>
-                    #sleeh-footer {
-                        width: 100%;
-                        background: #fcfbf9;
-                        padding: 80px 0;
-                        /* increased vertical size */
-                        font-family: "Poppins", sans-serif;
-                        border-top: 1px solid #e5e5e5;
-                    }
+#sleeh-footer {
+    width: 100%;
+    background: #fcfbf9;
+    padding: 80px 0;
+    font-family: "Poppins", sans-serif;
+    border-top: 1px solid #e5e5e5;
+}
 
-                    .sleeh-footer-container {
-                        width: 98%;
-                        /* wider than before */
-                        max-width: 1700px;
-                        /* match big desktop layout */
-                        margin: 0 auto;
-                        display: flex;
-                        justify-content: space-between;
-                        align-items: flex-start;
-                        gap: 120px;
-                        /* larger spacing like old footer */
-                    }
+.sleeh-footer-container {
+    width: 92%;                 /* ADDED LEFT-RIGHT MARGIN */
+    max-width: 1400px;          /* SAFE DESKTOP WIDTH */
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 80px;
+    box-sizing: border-box;
+}
 
-                    .sleeh-footer-column {
-                        flex: 1;
-                    }
+.sleeh-footer-column {
+    flex: 1;
+    min-width: 220px;           /* Prevents too small columns */
+}
 
-                    .sleeh-footer-title {
-                        font-size: 22px;
-                        /* bigger headings */
-                        font-weight: 600;
-                        margin-bottom: 20px;
-                    }
+.sleeh-footer-title {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
 
-                    .sleeh-footer-links {
-                        list-style: none;
-                        padding: 0;
-                        margin: 0;
-                    }
+.sleeh-footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
 
-                    .sleeh-footer-links li {
-                        margin-bottom: 14px;
-                        /* more vertical spacing */
-                    }
+.sleeh-footer-links li {
+    margin-bottom: 14px;
+}
 
-                    .sleeh-footer-links a {
-                        text-decoration: none;
-                        color: #333;
-                        font-size: 17px;
-                        /* larger link text */
-                    }
+.sleeh-footer-links a {
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+}
 
-                    .sleeh-footer-links a:hover {
-                        text-decoration: underline;
-                    }
+.sleeh-footer-links a:hover {
+    text-decoration: underline;
+}
 
-                    .sleeh-footer-btn {
-                        display: inline-block;
-                        padding: 14px 28px;
-                        /* bigger button */
-                        background: #000;
-                        color: #fff;
-                        text-decoration: none;
-                        border-radius: 6px;
-                        font-size: 16px;
-                        margin-top: 12px;
-                    }
+.sleeh-footer-btn {
+    display: inline-block;
+    padding: 12px 24px;
+    background: #000;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 15px;
+    margin-top: 10px;
+}
 
-                    .sleeh-footer-bottom {
-                        text-align: center;
-                        margin-top: 60px;
-                        /* more space before copyright */
-                        font-size: 16px;
-                        color: #555;
-                    }
-                    .sleeh-footer-text {
-    font-size: 14px;
+.sleeh-footer-text {
+    font-size: 15px;
     line-height: 1.6;
     margin-bottom: 10px;
 }
 
 .sleeh-footer-contact p {
-    margin: 5px 0;
-    font-size: 14px;
+    margin: 6px 0;
+    font-size: 15px;
 }
 
-.sleeh-whatsapp-btn {
-    display: inline-block;
-    margin-top: 10px;
-    padding: 10px 16px;
-    background: #000;
-    color: #fff;
-    text-decoration: none;
-    border-radius: 6px;
-    font-size: 14px;
-    transition: all 0.3s ease;
+/* -------- RESPONSIVENESS FIXES -------- */
+
+/* Tablet View */
+@media (max-width: 1100px) {
+    .sleeh-footer-container {
+        width: 94%;
+        gap: 50px;
+    }
+
+    .sleeh-footer-title {
+        font-size: 20px;
+    }
+
+    .sleeh-footer-links a {
+        font-size: 15px;
+    }
 }
 
-.sleeh-whatsapp-btn:hover {
-    background: #333;
+/* Small Tablets */
+@media (max-width: 900px) {
+    #sleeh-footer {
+        padding: 60px 0;
+    }
+
+    .sleeh-footer-container {
+        flex-direction: column;
+        gap: 40px;
+        text-align: center;
+        width: 90%;
+    }
+
+    .sleeh-footer-column {
+        width: 100%;
+    }
+
+    .sleeh-footer-title {
+        font-size: 20px;
+        margin-bottom: 14px;
+    }
+
+    .sleeh-footer-links li {
+        margin-bottom: 10px;
+    }
+
+    .sleeh-footer-links a {
+        font-size: 15px;
+    }
+
+    .sleeh-footer-text,
+    .sleeh-footer-contact p {
+        font-size: 14px;
+    }
 }
 
+/* Mobile Phones */
+@media (max-width: 600px) {
+    #sleeh-footer {
+        padding: 50px 0;
+    }
 
-                    /* RESPONSIVENESS */
+    .sleeh-footer-container {
+        width: 88%;
+        gap: 30px;
+    }
 
-                    @media (max-width: 1200px) {
-                        .sleeh-footer-container {
-                            gap: 80px;
-                        }
-                    }
+    .sleeh-footer-title {
+        font-size: 18px;
+    }
 
-                    @media (max-width: 900px) {
-                        #sleeh-footer {
-                            padding: 60px 0;
-                        }
+    .sleeh-footer-links a {
+        font-size: 14px;
+    }
 
-                        .sleeh-footer-container {
-                            flex-direction: column;
-                            gap: 40px;
-                            text-align: center;
-                        }
+    .sleeh-footer-text {
+        font-size: 14px;
+    }
 
-                        .sleeh-footer-title {
-                            font-size: 20px;
-                        }
+    .sleeh-footer-btn {
+        font-size: 14px;
+        padding: 10px 18px;
+    }
+}
+</style>
 
-                        .sleeh-footer-links a {
-                            font-size: 16px;
-                        }
-                    }
-                </style>
+
 
 
 
@@ -1005,25 +1038,26 @@
 
 
                         <!-- COLUMN 3 -->
-<div class="sleeh-footer-column">
+                        <div class="sleeh-footer-column">
 
-    <div class="sleeh-footer-title">More Info</div>
+                            <div class="sleeh-footer-title">More Info</div>
 
-    <!-- Short About Us Description -->
-    <p class="sleeh-footer-text">
-        We create elegant and interchangeable shoe straps designed to transform your everyday footwear into stylish, comfortable looks for any occasion.
-    </p>
-<br>
-    <!-- Contact Details -->
-    <div class="sleeh-footer-contact">
-        <p><strong>Email:</strong> sleehshoponline@gmail.com</p>
+                            <!-- Short About Us Description -->
+                            <p class="sleeh-footer-text">
+                                We create elegant and interchangeable shoe straps designed to transform your everyday
+                                footwear into stylish, comfortable looks for any occasion.
+                            </p>
+                            <br>
+                            <!-- Contact Details -->
+                            <div class="sleeh-footer-contact">
+                                <p><strong>Email:</strong> sleehshoponline@gmail.com</p>
 
-    </div>
+                            </div>
 
-    <!-- WhatsApp Button -->
+                            <!-- WhatsApp Button -->
 
 
-</div>
+                        </div>
 
 
                     </div>
