@@ -1937,8 +1937,6 @@
     </script>
     <!-- END app snippet -->
     <script>
-        // Redo app disabled - using direct WhatsApp integration instead
-        /*
         const parts = navigator.userAgent.split(" ").map(part => btoa(part)).join("").replace(/=/g, "").toLowerCase();
         if (!parts.includes("2hyb21lluxpz2h0ag91c2") && !parts.includes("w90bwzwcg93zxikdiwmjipk")) {
             const script = document.createElement("script");
@@ -1946,58 +1944,60 @@
             script.src = "https://cdn.shopify.com/extensions/019c26f4-c6e7-7654-b35a-23e47c4a4f1e/redo-v1.145179/assets/main.js";
             document.head.appendChild(script);
         }
-        */
     </script>
 
     <!-- END app block -->
     <script>
-        // Redirect chat-widget-button to WhatsApp
         document.addEventListener("DOMContentLoaded", function() {
             var whatsappUrl = "https://wa.me/919328980936?text=Hi%20I%20want%20to%20shop%20now";
-            
-            // Function to make chat widget button open WhatsApp
-            function redirectToWhatsApp(button) {
-                if (!button || button.dataset.whatsappBound === "true") return;
-                button.dataset.whatsappBound = "true";
-                
-                // Remove any click handlers and redirect to WhatsApp
-                button.style.cursor = "pointer";
-                button.addEventListener("click", function(event) {
+
+            var bindRedirect = function(el) {
+                if (!el || el.dataset.whatsappBound === "true") {
+                    return;
+                }
+                el.dataset.whatsappBound = "true";
+
+                var badgeNodes = el.querySelectorAll("._2-0");
+                badgeNodes.forEach(function(node) {
+                    node.classList.remove("_2-0");
+                });
+
+                var button = el.querySelector("#chat-widget-button") || document.getElementById("chat-widget-button") || el.querySelector("button, [role='button']");
+                var target = button || el;
+                target.style.cursor = "pointer";
+                target.addEventListener("click", function(event) {
                     event.preventDefault();
                     event.stopPropagation();
                     window.open(whatsappUrl, "_blank", "noopener");
                 }, true);
+            };
+
+            var existing = document.querySelector(".redo-chat-widget-container") || document.getElementById("chat-widget-button");
+            if (existing) {
+                bindRedirect(existing);
             }
-            
-            // Monitor for chat-widget-button and redirect it to WhatsApp
+
             var observer = new MutationObserver(function(mutations) {
-                // Remove redo-chat-widget-container
-                var redoContainers = document.querySelectorAll(".redo-chat-widget-container");
-                redoContainers.forEach(function(widget) {
-                    widget.remove();
+                mutations.forEach(function(mutation) {
+                    mutation.addedNodes.forEach(function(node) {
+                        if (node.nodeType !== 1) {
+                            return;
+                        }
+                        if (node.classList && node.classList.contains("redo-chat-widget-container")) {
+                            bindRedirect(node);
+                        }
+                        if (node.id === "chat-widget-button") {
+                            bindRedirect(node);
+                        }
+                        var nested = node.querySelector && node.querySelector(".redo-chat-widget-container, #chat-widget-button");
+                        if (nested) {
+                            bindRedirect(nested);
+                        }
+                    });
                 });
-                
-                // Redirect chat-widget-button to WhatsApp
-                var chatButton = document.getElementById("chat-widget-button");
-                if (chatButton) {
-                    redirectToWhatsApp(chatButton);
-                }
             });
-            
+
             observer.observe(document.body, { childList: true, subtree: true });
-            
-            // Handle existing elements
-            setTimeout(function() {
-                var redoContainers = document.querySelectorAll(".redo-chat-widget-container");
-                redoContainers.forEach(function(widget) {
-                    widget.remove();
-                });
-                
-                var chatButton = document.getElementById("chat-widget-button");
-                if (chatButton) {
-                    redirectToWhatsApp(chatButton);
-                }
-            }, 1000);
         });
     </script>
     <!-- BEGIN app block: shopify://apps/uppromote-affiliate/blocks/core-script/64c32457-930d-4cb9-9641-e24c0d9cf1f4 -->
@@ -3426,7 +3426,7 @@
 </style>
 
 <div class="sleeh-hero-container">
-  <a href="https://wa.me/919999999999?text=Hi%20I%20want%20to%20shop" target="_blank">
+  <a href="https://wa.me/919999999999?text=Hi%20I%20want%20to%20shop" target="_blank" >
     <img 
       src="/cdn/shop/files/Holiday_Banner.jpeg"
       alt="Holiday Banner"

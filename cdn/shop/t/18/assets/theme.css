@@ -26704,3 +26704,25 @@ video.is-loading,
   max-width: 100% !important;
   object-fit: contain !important;
 }
+iframe[src*="chat"] {
+    display: none !important;
+}
+iframe,
+#chat-widget,
+.chat-widget,
+#launcher,
+#tidio-chat,
+#zsiq_float,
+.intercom-launcher,
+#hubspot-messages-iframe-container,
+#shopify-chat,
+#fb-root,
+#fb-customer-chat,
+iframe[title="chat widget"],
+iframe[title="customer chat"],
+iframe[src*="chat"],
+iframe[src*="messenger"] {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+}
