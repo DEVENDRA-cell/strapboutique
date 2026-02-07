@@ -59,11 +59,81 @@
         h6 {
             font-family: 'Montserrat', sans-serif;
         }
-        /* Universal container to keep margins consistent */
+
+        /* Universal container class */
 .sleeh-container {
-    width: 96%;
+    width: 94%;
     max-width: 1400px;
     margin: 0 auto;
+    box-sizing: border-box;
+}
+
+        /* Header */
+.sleeh-header-wrapper {
+    width: 100%;
+    max-width: none; /* Ensure full width for background */
+}
+.sleeh-header-main {
+    width: inherit;
+    max-width: inherit;
+    margin: inherit;
+    box-sizing: inherit;
+}
+
+        /* Hero Section */
+.sleeh-hero-container {
+    width: inherit;
+    max-width: inherit;
+    margin: inherit;
+    box-sizing: inherit;
+}
+
+        /* GIF Section */
+.sleeh-gif-container {
+    width: inherit;
+    max-width: inherit;
+    margin: inherit;
+    box-sizing: inherit;
+}
+
+        /* Two Image Section */
+.sleeh-two-image-container {
+    width: inherit;
+    max-width: inherit;
+    margin: inherit;
+    box-sizing: inherit;
+}
+
+        /* Style Section */
+.sleeh-style-container {
+    width: inherit;
+    max-width: inherit;
+    margin: inherit;
+    box-sizing: inherit;
+}
+
+        /* Travel Section */
+.sleeh-travel-container {
+    width: inherit;
+    max-width: inherit;
+    margin: inherit;
+    box-sizing: inherit;
+}
+
+        /* WhatsApp Prefooter */
+.sleeh-whatsapp-container {
+    width: inherit;
+    max-width: inherit;
+    margin: inherit;
+    box-sizing: inherit;
+}
+
+        /* Footer */
+.sleeh-footer-container {
+    width: inherit;
+    max-width: inherit;
+    margin: inherit;
+    box-sizing: inherit;
 }
 
     </style>
@@ -75,40 +145,39 @@
 
             <style>
                 #sleeh-custom-header-container {
-                    width: 96%;
+                    width: 100%;
                     background: white;
                     border-bottom: 1px solid #eee;
                     font-family: "Poppins", sans-serif;
+                        box-sizing: border-box;
                 }
 
                 .sleeh-header-wrapper {
-                    padding: 10px 20px;
-                    max-width: 1600px;
-                    /* increased width for large screens */
-                    margin: 0 auto;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 10px 20px;
+    box-sizing: border-box;
                 }
 
                 .sleeh-header-main {
                     display: flex;
                     align-items: center;
-                    justify-content: space-between;
-                    /* creates space between logo and nav */
-                    flex-wrap: wrap;
+                    justify-content: space-between; /* Ensures proper spacing between logo and nav */
+                    /* flex-wrap: wrap; */
                 }
 
                 .sleeh-logo-area img {
                     height: 40px;
-                    width: auto;
+                    width: 100%;
                     display: block;
                 }
 
                 .sleeh-nav-area {
                     display: flex;
-                    gap: 40px;
-                    /* increased space between menu items */
+                    gap: 65px; /* Adjusted gap for consistent spacing */
                     align-items: center;
-                    margin-left: 40px;
-                    /* space between logo and nav section */
+                    margin-left: auto; /* Ensures nav aligns to the right */
                 }
 
                 .sleeh-nav-area a {
@@ -128,7 +197,7 @@
                     .sleeh-nav-area {
                         flex-wrap: wrap;
                         justify-content: center;
-                        gap: 20px;
+                        /* gap: 20px; */
                         margin-left: 0;
                     }
 
@@ -1032,7 +1101,7 @@
 
                             <a href="https://www.instagram.com/sleeh.in?igsh=MWtoZG05N2Y0MTZkOQ==" target="_blank"
                                 class="sleeh-footer-btn">
-                                Follow @sleeh
+                                Follow @sleeh.in
                             </a>
                         </div>
 
