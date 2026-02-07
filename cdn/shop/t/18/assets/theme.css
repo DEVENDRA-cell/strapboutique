@@ -6352,9 +6352,11 @@ img.fit-cover {
         height: auto !important;
     }
     
-    .image__fill img {
+    .image__fill img,
+    .image__fill video {
         position: relative !important;
         height: auto !important;
+        width: 100% !important;
         object-fit: contain !important;
     }
 }
@@ -7778,16 +7780,16 @@ body.has-first-section-overlay-header [data-header-transparent]:not(.meganav--vi
 }
 
 @media only screen and (max-width: 479px) {
-    .header__mobile {
-        display: grid
-    }
     .header__desktop {
-        position: relative;
-        overflow: hidden;
-        max-height: 0;
-        opacity: 0;
-        visibility: hidden;
-        pointer-events: none
+        display: flex !important;
+        position: static !important;
+        max-height: none !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+    }
+    .header__mobile {
+        display: none !important;
     }
 }
 
@@ -7809,17 +7811,17 @@ body.has-first-section-overlay-header [data-header-transparent]:not(.meganav--vi
 
 .js__show__mobile .header__mobile,
 [data-header-style=drawer] .header__mobile {
-    display: grid
+    display: none !important;
 }
 
 .js__show__mobile .header__desktop,
 [data-header-style=drawer] .header__desktop {
-    position: relative;
-    overflow: hidden;
-    max-height: 0;
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none
+    display: flex !important;
+    position: static !important;
+    max-height: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
 }
 
 .header__dropdown {
@@ -26305,28 +26307,7 @@ body.has-header-sticky .timeline {
     }
 }
 
-@media (min-width: 361px) and (max-width: 899px) {
-    img,
-    picture,
-    .image,
-    .image__container,
-    .image__hero,
-    .image__hero__scale,
-    video {
-        max-width: 360px !important;
-        width: 100% !important; /* Use 100% to respect the new max-width */
-        margin-left: auto !important;
-        margin-right: auto !important;
-        float: none !important;
-    }
-
-    .image__hero__scale video,
-    .image__hero__scale img {
-        width: 100% !important;
-        height: auto !important;
-        object-fit: contain !important;
-    }
-}
+/* Removed problematic max-width constraint - images should be full width */
 
 /*# sourceMappingURL=/cdn/shop/t/18/assets/theme.css.map?v=64620864768860856411747849695 */
 
@@ -26378,7 +26359,8 @@ body.has-header-sticky .timeline {
         width: 100% !important;
     }
     
-    .image__hero__scale.image__fill img {
+    .image__hero__scale.image__fill img,
+    .image__hero__scale.image__fill video {
         position: relative !important;
         object-fit: contain !important;
         width: 100% !important;
@@ -26460,6 +26442,53 @@ body.has-header-sticky .timeline {
     }
 }
 
+@media (max-width: 580px) {
+    .theme__header {
+        position: relative !important;
+        z-index: 5000 !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+
+    .header__wrapper {
+        position: relative !important;
+        z-index: 5000 !important;
+    }
+
+    .header__desktop,
+    .js__show__mobile .header__desktop,
+    [data-header-style=drawer] .header__desktop {
+        display: flex !important;
+        position: static !important;
+        max-height: none !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+    }
+
+    .header__mobile,
+    .js__show__mobile .header__mobile,
+    [data-header-style=drawer] .header__mobile {
+        display: none !important;
+    }
+
+    .section-overlay-header,
+    .hero__banner,
+    .image__hero__frame,
+    .image__hero__pane,
+    .image__hero__scale {
+        position: relative !important;
+        z-index: auto !important;
+        top: 0 !important;
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+    }
+
+    .header__backfill {
+        height: auto !important;
+    }
+}
+
 /* Fix logo staying inline on narrow screens below 320px */
 @media (max-width: 359px) {
     .header__mobile {
@@ -26494,4 +26523,118 @@ body.has-header-sticky .timeline {
     .header__mobile__right {
         min-width: 36px !important;
     }
+}
+
+/* ========================================================================
+   FINAL RESPONSIVE FIXES - DO NOT MODIFY
+   ======================================================================== */
+
+/* Fix 1: Image Responsiveness - Ensure all hero images scale properly */
+.main-hero-image,
+.hero__banner,
+.image__hero__scale img {
+    width: 100% !important;
+    height: auto !important;
+    max-width: 100% !important;
+    object-fit: contain !important;
+    display: block !important;
+}
+
+.main-hero-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* Fix 2: Video Sizing - Apply SAME settings as main-hero-image */
+.image__hero__scale video,
+.brick__block video,
+video.is-loading,
+.is-loading video,
+.is-loading {
+    width: 100% !important;
+    height: auto !important;
+    max-width: 100% !important;
+    object-fit: contain !important;
+    display: block !important;
+}
+
+/* Remove any conflicting cover rules */
+#Hero--template--19485517742330__section_hero_nYyLBU .image__hero__scale img,
+#Hero--template--19485517742330__section_hero_nYyLBU .image__hero__scale video,
+#BrickSection--template--19485517742330__section_custom_content_nQN4yD .image__hero__scale video {
+    object-fit: contain !important;
+    height: auto !important;
+}
+
+/* Fix 3: Header Consistency - Ensure desktop header at all sizes */
+@media (max-width: 650px) {
+    .header__desktop {
+        display: flex !important;
+        position: static !important;
+        max-height: none !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+    }
+    
+    .header__mobile {
+        display: none !important;
+    }
+    
+    .header__desktop__upper,
+    .header__desktop__lower {
+        display: flex !important;
+    }
+    
+    .site-nav,
+    .nav-links,
+    .header__menu {
+        display: flex !important;
+    }
+    
+    .mobile-menu,
+    .hamburger,
+    .header__mobile__hamburger {
+        display: none !important;
+    }
+}
+
+/* Ensure proper image/video container behavior */
+@media (max-width: 650px) {
+    .image__hero__frame,
+    .image__hero__pane,
+    .image__hero__scale {
+        position: relative !important;
+        height: auto !important;
+        min-height: auto !important;
+        overflow: visible !important;
+    }
+    
+    .wrapper--full {
+        overflow: visible !important;
+    }
+}
+
+/* Prevent hero__banner from hiding section-padding elements */
+.index-hero.section-padding,
+.section-overlay-header {
+    position: relative !important;
+    z-index: auto !important;
+    margin-bottom: 0 !important;
+}
+
+.hero__banner {
+    position: relative !important;
+    z-index: auto !important;
+    margin-bottom: 0 !important;
+}
+
+/* Ensure section-padding elements display properly after hero */
+.section-padding {
+    position: relative !important;
+    z-index: auto !important;
+    display: block !important;
+    clear: both !important;
 }
