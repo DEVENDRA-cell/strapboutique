@@ -407,78 +407,103 @@
                         display: none;
                     }
                 </style>
-                <header-component class="header__wrapper" data-header-wrapper data-header-sticky data-header-style="logo_beside" data-section-id="sections--19485518168314__header" data-section-type="header">
-                    <header class="theme__header" role="banner" data-header-height data-aos="fade">
-                        <div>
-                            <div class="header__mobile">
-                                <div class="header__mobile__left">
-                                    <div class="header__mobile__button">
-                                        <button class="header__mobile__hamburger" data-drawer-toggle="hamburger" aria-label="Show menu" aria-haspopup="true" aria-expanded="false" aria-controls="header-menu"><svg aria-hidden="true" focusable="false" role="presentation" class="icon icon-menu" viewBox="0 0 24 24"><path d="M3 5h18M3 12h18M3 19h18" stroke="#000" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-                                    </div>
-                                </div>
+                
 
-                                <div class="header__logo header__logo--image">
-                                    <a class="header__logo__link" href="/" data-logo-link>
-                                        <figure class="logo__img logo__img--color image-wrapper lazy-image is-loading" style="--aspect-ratio: 1.25;"><img src="/cdn/shop/files/solely_logo.png?crop=center&amp;height=200&amp;width=250" alt="Solely Jane" width="250" height="200" loading="eager" srcset="/cdn/shop/files/solely_logo.png?width=125 125w, /cdn/shop/files/solely_logo.png?width=188 188w, /cdn/shop/files/solely_logo.png?width=250 250w, /cdn/shop/files/solely_logo.png?width=120 120w, /cdn/shop/files/solely_logo.png?width=180 180w, /cdn/shop/files/solely_logo.png?width=240 240w"
-                                                sizes="(min-width: 750px) 125px, (min-width: 240px) 120px, calc((100vw - 64px) * 0.5)" fetchpriority="high" class=" is-loading ">
-                                        </figure>
-                                    </a>
-                                </div>
+                            
+                                <div id="sleeh-custom-header-container">
 
-                                
-                            </div>
+<style>
+  #sleeh-custom-header-container {
+      width: 100%;
+      background: white;
+      border-bottom: 1px solid #eee;
+      font-familyPoppins, sans-serif
+  }
 
-                            <div class="header__desktop" data-header-desktop>
-                                <div class="header__desktop__upper" data-takes-space-wrapper>
-                                    <div data-child-takes-space class="header__desktop__bar__l">
-                                        <div class="header__logo header__logo--image">
-                                            <a class="header__logo__link" href="/" data-logo-link>
-                                                <figure class="logo__img logo__img--color image-wrapper lazy-image is-loading" style="--aspect-ratio: 1.25;"><img src="/cdn/shop/files/solely_logo.png?crop=center&amp;height=200&amp;width=250" alt="Solely Jane" width="250" height="200" loading="eager" srcset="/cdn/shop/files/solely_logo.png?width=125 125w, /cdn/shop/files/solely_logo.png?width=188 188w, /cdn/shop/files/solely_logo.png?width=250 250w, /cdn/shop/files/solely_logo.png?width=120 120w, /cdn/shop/files/solely_logo.png?width=180 180w, /cdn/shop/files/solely_logo.png?width=240 240w"
-                                                        sizes="(min-width: 750px) 125px, (min-width: 240px) 120px, calc((100vw - 64px) * 0.5)" fetchpriority="high" class=" is-loading ">
-                                                </figure>
-                                            </a>
-                                        </div>
-                                    </div>
+  .sleeh-header-wrapper {
+    padding: 10px 20px;
+    max-width: 1600px;   /* increased width for large screens */
+    margin: 0 auto;
+  }
 
-                                    <div data-child-takes-space class="header__desktop__bar__c">
-                                        <nav class="header__menu" style="--highlight: #d02e2e;">
+  .sleeh-header-main {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;   /* creates space between logo and nav */
+      flex-wrap: wrap;
+  }
 
-                                            <div class="menu__item  child">
-                                                <a href="/" data-top-link class="navlink navlink--toplevel">
-    <span class="navtext">Home</span>
-  </a>
+  .sleeh-logo-area img {
+      height: 40px;
+      width: auto;
+      display: block;
+  }
 
-                                            </div>
+  .sleeh-nav-area {
+      display: flex;
+      gap: 40px;        /* increased space between menu items */
+      align-items: center;
+      margin-left: 40px;   /* space between logo and nav section */
+  }
 
+  .sleeh-nav-area a {
+      text-decoration: none;
+      color: #333;
+      font-size: 16px;
+  }
 
-                                            <div class="menu__item  child">
-                                                <a href="/heels.html" data-top-link class="navlink navlink--toplevel">
-    <span class="navtext">Shop Heels</span>
-  </a>
+  /* RESPONSIVENESS */
 
-                                            </div>
+  @media (max-width: 650px) {
+      .sleeh-header-main {
+          flex-direction: column;
+          gap: 10px;
+      }
 
+      .sleeh-nav-area {
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 20px;
+          margin-left: 0;
+      }
 
-                                            <div class="menu__item  child">
-                                                <a href="/flats.html" data-top-link class="navlink navlink--toplevel">
-    <span class="navtext">Shop Flats</span>
-  </a>
+      .sleeh-logo-area img {
+          height: 32px;
+      }
+  }
 
-                                            </div>
-                                            <div class="hover__bar"></div>
+  @media (max-width: 420px) {
+      .sleeh-nav-area a {
+          font-size: 14px;
+      }
+  }
+</style>
 
-                                            <div class="hover__bg"></div>
-                                        </nav>
-                                    </div>
+<header class="sleeh-header-wrapper">
+  <div class="sleeh-header-main">
 
-                                    <div data-child-takes-space class="header__desktop__bar__r">
-                                        
-                                            
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+    <!-- LOGO SECTION -->
+    <div class="sleeh-logo-area">
+      <a href="/">
+        <img 
+          src="/cdn/shop/files/solely_logo.png" 
+          alt="Sleeh Logo"
+        />
+      </a>
+    </div>
+
+    <!-- NAVIGATION SECTION -->
+    <nav class="sleeh-nav-area">
+      <a href="/">Home</a>
+      <a href="/heels.html">Shop Heels</a>
+      <a href="/flats.html">Shop Flats</a>
+    </nav>
+
+  </div>
+</header>
+
+</div>
+
                     </header>
 
                     <header-drawer class="drawer drawer--header" data-drawer="hamburger" aria-label="Menu" id="header-menu">

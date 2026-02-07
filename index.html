@@ -18,7 +18,7 @@
 
     <title> 
 
-        Solely Jane &ndash; SolelyJane
+        SLEEH
 
     </title>
 
@@ -3426,11 +3426,14 @@
 </style>
 
 <div class="sleeh-hero-container">
-  <img 
-    src="/cdn/shop/files/Holiday_Banner.jpeg"
-    alt="Holiday Banner"
-  />
+  <a href="https://wa.me/919999999999?text=Hi%20I%20want%20to%20shop" target="_blank">
+    <img 
+      src="/cdn/shop/files/Holiday_Banner.jpeg"
+      alt="Holiday Banner"
+    />
+  </a>
 </div>
+
 
 </div>
 <!-- END CUSTOM HERO IMAGE SECTION -->
@@ -3540,84 +3543,108 @@
 <div id="sleeh-two-image-section">
 
 <style>
-  #sleeh-two-image-section {
-      width: 100%;
-      background: #fcfbf9;
-      padding: 60px 0;
-  }
+.sleeh-two-image-container {
+    display: flex;
+    gap: 20px;
+    width: 96%;
+    max-width: 1400px;
+    margin: 40px auto;
+}
 
-  .sleeh-two-image-container {
-      width: 96%;
-      max-width: 1400px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: stretch;      /* key change */
-      gap: 30px;
-  }
+.sleeh-image-box {
+    position: relative;
+    flex: 1;
+    overflow: hidden;
+    border-radius: 12px;
+}
 
-  .sleeh-image-box {
-      width: 50%;
-      height: 520px;             /* fixed equal height */
-      overflow: hidden;
-      border-radius: 10px;
-  }
+.sleeh-image-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+}
 
-  .sleeh-image-box img {
-      width: 100%;
-      height: 100%;              /* force same height */
-      object-fit: cover;         /* crop equally if needed */
-      display: block;
-  }
+.sleeh-image-box:hover img {
+    transform: scale(1.03);
+}
 
-  /* RESPONSIVENESS */
+.sleeh-overlay-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: "Poppins", sans-serif;
+    font-size: 32px;
+    font-weight: 600;
+    color: white;
+    letter-spacing: 2px;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.4);
+    pointer-events: none;
+}
 
-  @media (max-width: 900px) {
-      .sleeh-two-image-container {
-          flex-direction: column;
-          gap: 20px;
-      }
+/* ===== NEW TEXT SECTION ===== */
 
-      .sleeh-image-box {
-          width: 100%;
-          height: auto;          /* revert on mobile */
-      }
+.sleeh-between-text {
+    display: none;
+    text-align: center;
+    font-family: "Poppins", sans-serif;
+    font-size: 17px;
+    padding: 25px 15px;
+    margin: 10px 0;
+    color: #5a4030;
+    background: #f7f2eb;
+    border-radius: 10px;
+    line-height: 1.7;
+}
 
-      .sleeh-image-box img {
-          height: auto;
-          object-fit: contain;   /* show full image on mobile */
-      }
-  }
 
-  @media (max-width: 500px) {
-      #sleeh-two-image-section {
-          padding: 40px 0;
-      }
-  }
+/* MOBILE RESPONSIVENESS */
+
+@media (max-width: 900px) {
+    .sleeh-two-image-container {
+        flex-direction: column;
+    }
+
+    .sleeh-overlay-text {
+        font-size: 26px;
+    }
+
+    .sleeh-between-text {
+        display: block;          /* visible only on mobile */
+    }
+}
 </style>
 
 
 <div class="sleeh-two-image-container">
 
-  <!-- LEFT IMAGE -->
-  <div class="sleeh-image-box">
+  <!-- FLATS IMAGE -->
+  <a href="/flats.html" class="sleeh-image-box">
     <img 
       src="//solelyjane.com/cdn/shop/files/Soley_Jane_-_Lifestyle-SQ-1_06df242e-a1de-4a73-b892-4ddc835753a8.jpg"
-      alt="Lifestyle Image 1"
+      alt="Flats Collection"
     />
+    <div class="sleeh-overlay-text">FLATS</div>
+  </a>
+
+  <!-- TEXT ONLY FOR MOBILE -->
+  <div class="sleeh-between-text">
+    We’ll be releasing our new designs very soon, followed by the official sales launch.
   </div>
 
-  <!-- RIGHT IMAGE -->
-  <div class="sleeh-image-box">
+  <!-- HEELS IMAGE -->
+  <a href="/heels.html" class="sleeh-image-box">
     <img 
       src="//solelyjane.com/cdn/shop/files/IMG_2304_jpg.jpg"
-      alt="Lifestyle Image 2"
+      alt="Heels Collection"
     />
-  </div>
+    <div class="sleeh-overlay-text">HEELS</div>
+  </a>
 
 </div>
 
-</div>
 <!-- END CUSTOM TWO IMAGE SECTION -->
 
                     
@@ -3763,7 +3790,7 @@
           </p>
 
           <a href="/heels.html" class="sleeh-style-btn">
-              Shop Now
+              CHAT WITH US ON WHATSAPP
           </a>
       </div>
 
@@ -3906,7 +3933,7 @@
           <a 
             href="https://wa.me/919999999999?text=Hi%20I%20want%20to%20shop%20now" 
             class="sleeh-travel-btn">
-            Shop Now
+            CHAT WITH US ON WHATSAPP
           </a>
       </div>
 
@@ -4053,13 +4080,13 @@
 
     <!-- COLUMN 2 -->
     <div class="sleeh-footer-column">
-      <div class="sleeh-footer-title">Connect to Insta</div>
+      <div class="sleeh-footer-title">FOLLOW ON INSTA</div>
 
       <a 
-        href="https://instagram.com/devendra" 
+        href="https://www.instagram.com/sleeh.in?igsh=MWtoZG05N2Y0MTZkOQ==" 
         target="_blank" 
         class="sleeh-footer-btn">
-        Follow @devendra
+        Follow @sleeh
       </a>
     </div>
 
