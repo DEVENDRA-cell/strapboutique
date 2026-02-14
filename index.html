@@ -961,10 +961,14 @@
                     on WhatsApp for regular updates and exclusive previews.
                 </p>
 
-                <a class="sleeh-whatsapp-btn" href="https://chat.whatsapp.com/JMcWR2WVg5WAhdL6AA489X?mode=gi_t"
-                    target="_blank" rel="noopener">
-                    Join us on WhatsApp
-                </a>
+<a href="https://chat.whatsapp.com/JMcWR2WVg5WAhdL6AA489X?mode=gi_t"
+   class="sleeh-whatsapp-btn"
+   id="sleeh-whatsapp-btn">
+   Join us on WhatsApp
+</a>
+
+
+
             </div>
         </section>
 
@@ -1221,6 +1225,27 @@
 
 
 </div>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  var btn = document.getElementById("sleeh-whatsapp-btn");
+
+  if (btn) {
+    btn.addEventListener("click", function () {
+
+      if (typeof gtag === "function") {
+        gtag("event", "whatsapp_click", {
+          event_category: "engagement",
+          event_label: "Join WhatsApp Button"
+        });
+      }
+
+    });
+  }
+
+});
+</script>
+
 </body>
 
 </html>

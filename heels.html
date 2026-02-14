@@ -251,11 +251,12 @@ Discover the SLEEH 2.5” Essential Heel, where a timeless silhouette meets all-
 
     </p>
 
-    <a class="sleeh-whatsapp-btn"
-       href="https://chat.whatsapp.com/JMcWR2WVg5WAhdL6AA489X?mode=gi_t"
-       target="_blank">
-       JOIN US ON WHATSAPP →
-    </a>
+
+<a href="https://chat.whatsapp.com/JMcWR2WVg5WAhdL6AA489X?mode=gi_t"
+   class="sleeh-whatsapp-btn"
+   id="sleeh-whatsapp-btn">
+    JOIN US ON WHATSAPP →
+</a>
 
   </div>
 
@@ -290,6 +291,26 @@ setInterval(() => {
 
 </section>
 <!-- ===== END CUSTOM HEELS SHOWCASE ===== -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  var btn = document.getElementById("sleeh-whatsapp-btn");
+
+  if (btn) {
+    btn.addEventListener("click", function () {
+
+      if (typeof gtag === "function") {
+        gtag("event", "whatsapp_click", {
+          event_category: "engagement",
+          event_label: "Join WhatsApp Button"
+        });
+      }
+
+    });
+  }
+
+});
+</script>
 
 </body>
 
